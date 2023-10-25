@@ -1,0 +1,66 @@
+.form{
+    text-align: center;
+}
+.block{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.buttonShow{
+    position: absolute;
+    z-index: 1;
+    right: 39%;
+    border-radius: 100px;
+    margin-top: 1px;
+    margin-right: 10px;
+    width: 50px;
+    padding-top: 1px;
+    border: transparent;
+    background: transparent;
+}
+.input{
+    padding: 5px 10px;
+    font-size: 18px;
+    width: 20%;
+    align-self: center;
+    height: 30px;
+    border-radius: 100px;
+}
+.password{
+}
+.label{
+    text-indent: 40%;
+    text-align: left;
+    margin: 2px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.buttonConfirm{
+    margin-top: 30px;
+    background-color: royalblue;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+.buttonConfirm:hover{
+    background-color: #282c34;
+}
+.name{
+    margin:50px 0 30px 0 ;
+    text-align: center;
+    font-size: 38px;
+    font-weight: 500;
+}
+.namePart1{
+
+}
+.namePart2{
+    color: royalblue;
+}
+.loginRedirect{
+    margin-top: 10px;
+    text-align: center;
+}
