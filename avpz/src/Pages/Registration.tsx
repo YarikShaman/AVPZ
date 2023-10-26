@@ -85,7 +85,7 @@ function Registration() {
                         className={"input"}
                         onChange={(e) => {
                             setCompanyName(e.target.value)
-                            if (!RegExp("^[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]{1,20}$").test(e.target.value))
+                            if (!RegExp("^[a-zA-Z]{2,20}$").test(e.target.value))
                                 setErrorCompanyName("Incorrect Company Name")
                             else
                                 setErrorCompanyName("")
@@ -111,7 +111,7 @@ function Registration() {
                         className={"input"}
                         onChange={(e) => {
                             setFirstName(e.target.value)
-                            if (!RegExp("^[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]{1,20}$").test(e.target.value))
+                            if (!RegExp("^[a-zA-Z]{2,20}$").test(e.target.value))
                                 setErrorFirstName("Incorrect First Name")
                             else
                                 setErrorFirstName("")
@@ -137,7 +137,7 @@ function Registration() {
                         className={"input"}
                         onChange={(e) => {
                             setLastName(e.target.value)
-                            if (!RegExp("^[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]{1,20}$").test(e.target.value))
+                            if (!RegExp("^[a-zA-Z]{2,20}$").test(e.target.value))
                                 setErrorLastName("Incorrect Last Name")
                             else
                                 setErrorLastName("")
