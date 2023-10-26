@@ -1,11 +1,12 @@
 import {useState} from "react";
 import {CheckPassword} from "../Utilities/CheckPassword";
 import "../Styles/Registration.css"
-
+import axios from "axios";
+import {useNavigate} from "react-router-dom"
 function Registration() {
     const [companyName, setCompanyName] = useState("");
     const [firstName, setFirstName] = useState("");
-    const [LastName, setLastName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState("");
     const [password1, setPassword1] = useState("");
@@ -19,8 +20,46 @@ function Registration() {
     const [errorPassword1, setErrorPassword1] = useState("");
     const [errorPassword2, setErrorPassword2] = useState("");
     const [errorPhoneNumber, setErrorPhoneNumber] = useState('');
-    function RegistrationConfirming(email: string, pas1: string, pas2: string) {
+    const [errorServer, setErrorServer] = useState('');
+    const nav = useNavigate()
+    function RegistrationConfirming(
+        email: string,
+        password: string,
+        companyName:string,
+        firstName:string,
+        lastName:string,
+        phoneNumber:string) {
+        axios.post("", {
 
+        }).then(resp => {
+            localStorage["jwt"] = resp.data.jwt;
+            axios.get("", {headers: {Authorization: "Bearer " + resp.data.jwt}})
+                .then(resp=>{
+                    nav("../ver")
+                })
+                .catch(err=>{
+                    switch (err.response.status) {
+                        case 417:
+                            setErrorEmail("Email_not_available");
+                            break;
+                        case 500:
+                            setErrorServer("Account_created_without_verification");
+                            break;
+                    }
+                })
+        }).catch(err => {
+            switch (err.response.status) {
+                case 400:
+                    setErrorServer("Bad_data_validation_error");
+                    break;
+                case 409:
+                    setErrorEmail("Account_already_exists");
+                    break;
+                case 500:
+                    setErrorServer("Server_do_not_response");
+                    break;
+            }
+        });
     }
 
     return (
@@ -33,7 +72,7 @@ function Registration() {
             </div>
             <form className="form" action="#" method="POST" onSubmit={(e) => {
                 e.preventDefault();
-                RegistrationConfirming(email, password1, password2)
+                RegistrationConfirming(email, password1, companyName, firstName, lastName, phoneNumber)
             }}>
                 <div className={"block"}>
                     <div className={"label"}>
@@ -46,12 +85,12 @@ function Registration() {
                         className={"input"}
                         onChange={(e) => {
                             setCompanyName(e.target.value)
-                            if (!RegExp("^[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]{1,20}$").test(companyName))
+                            if (!RegExp("^[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]{1,20}$").test(e.target.value))
                                 setErrorCompanyName("Incorrect Company Name")
                             else
                                 setErrorCompanyName("")
                         }}
-
+                        value={companyName}
                         placeholder={"Company name"}
                         id="companyName"
                         name="companyName"
@@ -72,11 +111,12 @@ function Registration() {
                         className={"input"}
                         onChange={(e) => {
                             setFirstName(e.target.value)
-                            if (!RegExp("^[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]{1,20}$").test(firstName))
+                            if (!RegExp("^[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]{1,20}$").test(e.target.value))
                                 setErrorFirstName("Incorrect First Name")
                             else
                                 setErrorFirstName("")
                         }}
+                        value={firstName}
                         placeholder={"First name"}
                         id="firstName"
                         name="firstName"
@@ -97,11 +137,12 @@ function Registration() {
                         className={"input"}
                         onChange={(e) => {
                             setLastName(e.target.value)
-                            if (!RegExp("^[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]{1,20}$").test(LastName))
+                            if (!RegExp("^[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]{1,20}$").test(e.target.value))
                                 setErrorLastName("Incorrect Last Name")
                             else
                                 setErrorLastName("")
                         }}
+                        value={lastName}
                         placeholder={"Last name"}
                         id="LastName"
                         name="LastName"
@@ -122,11 +163,12 @@ function Registration() {
                         className={"input"}
                         onChange={(e) => {
                             setPhoneNumber(e.target.value)
-                            if (!RegExp("^\\+[0-9]{8,}$").test(phoneNumber))
+                            if (!RegExp("^\\+[0-9]{8,}$").test(e.target.value))
                                 setErrorPhoneNumber("Incorrect Phone Number")
                             else
                                 setErrorPhoneNumber("")
                         }}
+                        value={phoneNumber}
                         placeholder={"+38(___)___-__-__"}
                         id="phoneNumber"
                         name="phoneNumber"
@@ -145,11 +187,12 @@ function Registration() {
                     </div>
                     <input onChange={(e) => {
                         setEmail(e.target.value)
-                        if (!RegExp("^[\\w\\.-]+@[\\w\\.-]+\\.[\\w\\.-]+$").test(email)) {
+                        if (!RegExp("^[\\w\\.-]+@[\\w\\.-]+\\.[\\w\\.-]+$").test(e.target.value)) {
                             setErrorEmail("Incorrect Email");
                         } else
                             setErrorEmail("")
                     }}
+                           value={email}
                            placeholder={"Email"}
                            className={"input"}
                            id="email"
@@ -173,10 +216,9 @@ function Registration() {
                             className={"input password"}
                             onChange={(e) => {
                                 setPassword1(e.target.value)
-                                if (CheckPassword(password1).code != 0)
-                                    setErrorPassword1(CheckPassword(password1).res)
-                                else setErrorPassword1("")
+                                setErrorPassword1(CheckPassword(e.target.value).res)
                             }}
+                            value={password1}
                             placeholder={"Password"}
                             id="password"
                             name="password"
@@ -207,7 +249,7 @@ function Registration() {
                             }
                         </button>
                     </div>
-                    <div  style={{color: "red"}}>{errorPassword1 +password1}</div>
+                    <div  style={{color: "red"}}>{errorPassword1}</div>
                 </div>
                 <div className={"block"}>
                     <div className={"label"}>
@@ -221,10 +263,11 @@ function Registration() {
                             className={"input password"}
                             onChange={(e) => {
                                 setPassword2(e.target.value)
-                                if (password1 != password2)
-                                    setErrorPassword2("Password mismatch"+password1+"_"+password2)
+                                if (password1 != e.target.value)
+                                    setErrorPassword2("Password mismatch")
                                 else setErrorPassword2("")
                             }}
+                            value={password2}
                             placeholder={"Password "}
                             id="password-repeat"
                             name="password-repeat"
@@ -260,6 +303,7 @@ function Registration() {
                 <button className={"buttonConfirm"} type="submit">
                     Confirm
                 </button>
+                <div  style={{color: "red"}}>{errorServer}</div>
             </form>
             <div className={"loginRedirect"}>
                 <label>Do you have an account? </label>

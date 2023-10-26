@@ -1,5 +1,6 @@
 export function CheckPassword(pass: string) {
-    let reg = new RegExp("^[a-zA-Z0-9!\\#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~_]{8,38}$\n");
+
+    let reg = new RegExp("^.{8,38}$");
     let reg_number = new RegExp("[0-9]+");
     let reg_latin = new RegExp("[a-z]+");
     let reg_uppercase = new RegExp("[A-Z]+");
