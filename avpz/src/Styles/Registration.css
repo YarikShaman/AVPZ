@@ -26,6 +26,7 @@
     height: 30px;
     border-radius: 100px;
 }
+
 .password{
 }
 .label{
@@ -63,4 +64,15 @@
 .loginRedirect{
     margin-top: 10px;
     text-align: center;
+}
+@media (orientation: portrait) {
+    .input{
+        width: 90%;
+    }
+    .buttonShow{
+        right: 1%;
+    }
+    .label{
+        text-indent: 5%;
+    }
 }
