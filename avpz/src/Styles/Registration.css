@@ -27,8 +27,6 @@
     border-radius: 100px;
 }
 
-.password{
-}
 .label{
     text-indent: 40%;
     text-align: left;
@@ -55,15 +53,19 @@
     font-size: 38px;
     font-weight: 500;
 }
-.namePart1{
-
-}
 .namePart2{
     color: royalblue;
 }
 .loginRedirect{
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: center;
+}
+.lowerDiv{
+    width: 20%;
+    margin: 20px auto ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 @media (orientation: portrait) {
     .input{

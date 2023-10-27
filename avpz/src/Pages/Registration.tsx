@@ -67,7 +67,7 @@ function Registration() {
         <p>Header</p>
         <div>
             <div className={"name"}>
-                <label className={"namePart1"}>Sign Up </label>
+                <label >Sign Up </label>
                 <label className={"namePart2"}>Your Company</label>
             </div>
             <form className="form" action="#" method="POST" onSubmit={(e) => {
