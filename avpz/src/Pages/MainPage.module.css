@@ -1,0 +1,41 @@
+.mainBackground{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rebeccapurple;
+    flex-direction: column;
+}
+.threeDivs{
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    background: aqua;
+    flex-direction: column;
+    display: flex;
+}
+.learnMoreDiv{
+    width: 100%;
+    height: 26vw;
+    background: cadetblue;
+    margin-top: 7vw;
+}
+.picturesDiv{
+    width: 100%;
+    height: 45vw;
+    background: #4f3030;
+    margin-top: 10vw ;
+}
+.signUpDiv{
+    width: 100%;
+    height: 50vw;
+    background: blue;
+    margin-top: 10vw ;
+    margin-bottom: 7vw ;
+}
+.contactUsDiv{
+    width: 100%;
+    height: 400px;
+    background: green;
+}
