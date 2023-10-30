@@ -4,11 +4,10 @@ export function CheckPassword(pass: string) {
     let reg_number = new RegExp("[0-9]+");
     let reg_latin = new RegExp("[a-z]+");
     let reg_uppercase = new RegExp("[A-Z]+");
-    let reg_spec_symbol = new RegExp("[!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]+");
     if (!reg.test(pass))
         return {
             code: 1,
-            res:"Pass can only include latin, numeric and special symbols(8-38 symbols)"
+            res:"Pass can only include latin and numeric symbols(8-38 symbols)"
         }
     else if (!reg_number.test(pass))
         return {
@@ -20,10 +19,10 @@ export function CheckPassword(pass: string) {
             code: 3,
             res:"Pass must include at list 1 latin symbol in upper and 1 in lower case"
         }
-    else if (!reg_spec_symbol.test(pass))
+    else if (!reg_latin.test(pass)||!reg_uppercase.test(pass))
         return {
             code: 4,
-            res:"Pass must include at list 1 special symbol"
+            res:"Pass must include at list 1 latin symbol in upper and 1 in lower case"
         }
     else return {
             code: 0,

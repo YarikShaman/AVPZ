@@ -29,35 +29,20 @@ function Registration() {
         firstName:string,
         lastName:string,
         phoneNumber:string) {
-        axios.post("", {
-
+        setErrorServer("");
+        axios.post("http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/auth/signup/", {
+            email: email,
+            name: firstName+" "+lastName,
+            password: password,
         }).then(resp => {
-            localStorage["jwt"] = resp.data.jwt;
-            axios.get("", {headers: {Authorization: "Bearer " + resp.data.jwt}})
-                .then(resp=>{
-                    nav("../ver")
-                })
-                .catch(err=>{
-                    switch (err.response.status) {
-                        case 417:
-                            setErrorEmail("Email_not_available");
-                            break;
-                        case 500:
-                            setErrorServer("Account_created_without_verification");
-                            break;
-                    }
-                })
+            nav("../");
         }).catch(err => {
-            switch (err.response.status) {
-                case 400:
-                    setErrorServer("Bad_data_validation_error");
-                    break;
-                case 409:
-                    setErrorEmail("Account_already_exists");
-                    break;
-                case 500:
-                    setErrorServer("Server_do_not_response");
-                    break;
+            if(err.response.detail=="Password should contain at least eight characters, at least one letter and one number"){
+                setErrorPassword1(err.response.detail);
+            }else if(err.response.detail=="User with this email already exists"){
+                setErrorEmail(err.response.detail)
+            }else if(err.response.status=="500"){
+                setErrorServer("Server is down, try later")
             }
         });
     }
@@ -73,7 +58,8 @@ function Registration() {
             <form className="form" action="#" method="POST" onSubmit={(e) => {
                 e.preventDefault();
                 RegistrationConfirming(email, password1, companyName, firstName, lastName, phoneNumber)
-            }}>
+            }}>{errorServer && (
+                <div className="serverError">Error: {errorServer}</div>)}
                 <div className={"block"}>
                     <div className={"label"}>
                         <label htmlFor="companyName">
@@ -303,7 +289,6 @@ function Registration() {
                 <button className={"buttonConfirm"} type="submit">
                     Confirm
                 </button>
-                <div  style={{color: "red"}}>{errorServer}</div>
             </form>
             <div className={"loginRedirect"}>
                 <label>Do you have an account? </label>

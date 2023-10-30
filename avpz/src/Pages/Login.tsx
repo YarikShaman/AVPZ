@@ -10,40 +10,27 @@ function Login() {
     const [errorEmail, setErrorEmail] = useState("");
     const [errorPassword, setErrorPassword] = useState("");
     const [errorServer, setErrorServer] = useState('');
+    const [isRemember, setIsRemember] = useState(false);
     const nav = useNavigate()
     function LoginConfirming(
         email: string,
         password: string) {
-        axios.post("", {
-
+        axios.post("http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/auth/login/", {
+            email: email,
+            password: password
         }).then(resp => {
-            localStorage["jwt"] = resp.data.jwt;
-            axios.get("", {headers: {Authorization: "Bearer " + resp.data.jwt}})
-                .then(resp=>{
-                    nav("../ver")
-                })
-                .catch(err=>{
-                    switch (err.response.status) {
-                        case 417:
-                            setErrorEmail("Email_not_available");
-                            break;
-                        case 500:
-                            setErrorServer("Account_created_without_verification");
-                            break;
-                    }
-                })
+            if (isRemember) localStorage["jwt"] = resp.data.token;
+            else sessionStorage["jwt"] = resp.data.token;
+            nav("../");
         }).catch(err => {
-            switch (err.response.status) {
-                case 400:
-                    setErrorServer("Bad_data_validation_error");
-                    break;
-                case 409:
-                    setErrorEmail("Account_already_exists");
-                    break;
-                case 500:
-                    setErrorServer("Server_do_not_response");
-                    break;
+            if(err.response.detail=="User with this email is not registered in the system") {
+                setErrorServer(err.response.detail);
+            } else if(err.response.detail=="Invalid password"){
+                setErrorPassword(err.response.detail)
+            } else if(err.response.status == 500){
+                setErrorServer("Server is down, try later")
             }
+
         });
     }
 
@@ -57,7 +44,8 @@ function Login() {
             <form className="form" action="#" method="POST" onSubmit={(e) => {
                 e.preventDefault();
                 LoginConfirming(email, password)
-            }}>
+            }}>{errorServer && (
+                <div className="serverError">Error: {errorServer}</div>)}
                 <div className={"block"}>
                     <div className={"label"}>
                         <label htmlFor="email">
@@ -132,7 +120,13 @@ function Login() {
                 </div>
                 <div className={"lowerDiv"}>
                     <div className={"rememberMe"}>
-                        <input type={"checkbox"}></input>
+                        <input
+                            type={"checkbox"}
+                            checked={isRemember}
+                            onChange={(e)=>{
+                            setIsRemember(!isRemember)}
+                            }
+                        />
                         <label>Remember me</label>
                     </div>
                     <a href={"/recovery"}>
@@ -142,7 +136,6 @@ function Login() {
                 <button className={"buttonConfirm"} type="submit">
                     Confirm
                 </button>
-                <div  style={{color: "red"}}>{errorServer}</div>
             </form>
             <div className={"loginRedirect"}>
                 <label>Don`t have an account? </label>
