@@ -36,15 +36,15 @@
 .buttonConfirm{
     margin-top: 30px;
     background-color: royalblue;
-    color: #fff;
+    color: white;
     border: none;
-    padding: 12px 30px;
+    padding: 16px 34px;
     border-radius: 15px;
-    font-size: 22px;
+    font-size: 26px;
     cursor: pointer;
 }
 .buttonConfirm:hover{
-    background-color: #282c34;
+    background-color: black;
 }
 .name{
     margin:50px 0 30px 0 ;

@@ -3,6 +3,7 @@ import {CheckPassword} from "../Utilities/CheckPassword";
 import "../Styles/Registration.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
+import Header from "../Components/Header"
 function Registration() {
     const [companyName, setCompanyName] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -49,7 +50,7 @@ function Registration() {
 
     return (
         <body>
-        <p>Header</p>
+        <Header/>
         <div>
             <div className={"name"}>
                 <label >Sign Up </label>
