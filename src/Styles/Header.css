@@ -50,6 +50,56 @@
     cursor: pointer;
 }
 
+.footer{
+    background-color: #C7B7DA;
+    height: 200px;
+    align-items: start;
+    margin-top: 40px;
+}
+
+.contactBlock{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    font-size: 20px;
+    width: 35%;
+    margin:30px 10%;
+}
+
+.linkBlock{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.linkPolicy{
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.linkPolicy:hover{
+    color: white;
+}
+
+.linkFooter{
+    margin-top: 10px;
+    font-size: 18px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.icon{
+    margin:10px 15px 0 0;
+    cursor: pointer;
+}
+
+.copyright{
+    margin-top: 150px;
+    margin-right: 70px;
+    color: #717070;
+}
+
 .headerBtn:hover {
     color: royalblue;
 }

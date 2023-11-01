@@ -59,7 +59,6 @@ function Registration() {
 
     return (
         <div>
-            <Header/>
             <div>
                 <div className={"name"}>
                     <label>Sign Up </label>
@@ -307,7 +306,6 @@ function Registration() {
                     </a>
                 </div>
             </div>
-            <p>Footer</p>
         </div>
     )
 }

@@ -2,12 +2,11 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import "../Styles/Header.css"
-import UserPic from "../Imges/img.svg"
+import UserPic from "../Imges/profilePicture.svg"
 
-export function Header() {
+function Header() {
     let nav = useNavigate();
     const location = useLocation();
-//    const [jwt, setJwt] = useState("");
     const [name, setName] = useState("");
 
     function getName(jwt:string|null) {
@@ -18,7 +17,14 @@ export function Header() {
             resp => {
                 setName(resp.data.name);
             }
-        )
+        ).catch(err=>{
+            switch (err){
+                case 401:
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    break;
+            }
+        })
     }
 
     useEffect(() => {

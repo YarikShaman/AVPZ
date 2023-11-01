@@ -44,9 +44,7 @@ function Login() {
     }
 
     return (
-        <div>
-            <Header/>
-            <div>
+            <div className={"login"}>
                 <div className={"name"}>
                     <label>Login </label>
                 </div>
@@ -154,8 +152,6 @@ function Login() {
                     </a>
                 </div>
             </div>
-            <p>Footer</p>
-        </div>
     )
 }
 
