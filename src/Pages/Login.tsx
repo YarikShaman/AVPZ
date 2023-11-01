@@ -24,14 +24,20 @@ function Login() {
             else sessionStorage["jwt"] = resp.data.token;
             nav("../");
         }).catch(err => {
-            if(err.response.detail=="User with this email is not registered in the system") {
-                setErrorServer(err.response.detail);
-            } else if(err.response.detail=="Invalid password"){
-                setErrorPassword(err.response.detail)
-            } else if(err.response.status == 500){
-                setErrorServer("Server is down, try later")
+            switch (err.response.status){
+                case 400:
+                    setErrorPassword("Invalid password");
+                    break;
+                case 404:
+                    setErrorEmail(err.response.detail);
+                    break;
+                case 422:
+                    setErrorServer(err.response.detail)
+                    break;
+                case 500:
+                    setErrorServer("Server is down, try later")
+                    break;
             }
-
         });
     }
 

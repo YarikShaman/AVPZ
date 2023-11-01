@@ -38,12 +38,19 @@ function Registration() {
         }).then(resp => {
             nav("../");
         }).catch(err => {
-            if(err.response.detail=="Password should contain at least eight characters, at least one letter and one number"){
-                setErrorPassword1(err.response.detail);
-            }else if(err.response.detail=="User with this email already exists"){
-                setErrorEmail(err.response.detail)
-            }else if(err.response.status=="500"){
-                setErrorServer("Server is down, try later")
+            switch (err.response.status){
+                case 400:
+                    setErrorPassword1("Input password has incorrect format");
+                    break;
+                case 409:
+                    setErrorEmail(err.response.detail);
+                    break;
+                case 422:
+                    setErrorServer("One of fields were passed incorrectly");
+                    break;
+                case 500:
+                    setErrorServer("Server is down, try later");
+                    break;
             }
         });
     }
