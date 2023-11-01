@@ -2,48 +2,80 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import "../Styles/Header.css"
+import UserPic from "../Imges/img.svg"
+
 export function Header() {
     let nav = useNavigate();
     const location = useLocation();
-    const [jwt, setJwt] = useState("");
+//    const [jwt, setJwt] = useState("");
     const [name, setName] = useState("");
-    function getName(){
+
+    function getName(jwt:string|null) {
         axios.get(
             "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/profile/",
             {headers: {Authorization: "Bearer " + jwt}}
         ).then(
-            resp =>{
+            resp => {
                 setName(resp.data.name);
             }
         )
     }
-    useEffect(()=>{
-        if(localStorage.jwt!=undefined){
-            setJwt(localStorage.jwt);
-            getName();
-        } else if(sessionStorage.jwt!=undefined){
-            setJwt(sessionStorage.jwt);
-            getName();
-        }else if(location.pathname!="/login" && location.pathname!="/signup"){
-            nav("/login");
-        } else{
+
+    useEffect(() => {
+        if (name === "") {
+            if (!!localStorage.getItem("jwt")) {
+                getName(localStorage.getItem("jwt"));
+            } else if (!!sessionStorage.getItem("jwt")) {
+                getName(sessionStorage.getItem("jwt"));
+            } else if (location.pathname != "/login" && location.pathname != "/signup") {
+                nav("/login");
+            }
         }
     })
 
     return (
         <div className={"header"}>
-            <div className={"siteName"}>
+            <div className={"siteName buttons"}>
                 <label className={"namePart"}>tesT</label>
                 <label>eam</label>
             </div>
-            <div className={"unauthorizedButtons"}>
-                <button
-                    className={"contactUsBtn button"}>Contact Us</button>
-                <button
-                    onClick={()=>nav("/login")}
-                    className={"loginBtn button"}>Login</button>
-            </div>
+            {name != "" &&
+                <div className={"buttons"}>
+                    <button onClick={() => {
+                        nav("/companies")
+                    }} className={"headerBtn button"}>Companies
+                    </button>
+                    <button onClick={() => {
+                        nav("/tests")
+                    }} className={"headerBtn button"}>Tests
+                    </button>
+                    <button onClick={() => {
+                        nav("/statistics")
+                    }} className={"headerBtn button"}>Statistics
+                    </button>
+                    <button onClick={() => {
+                        nav("/contactUs")
+                    }} className={"headerBtn button"}>Contact Us
+                    </button>
+                    <img onClick={() => {
+                        nav("/profile")
+                    }} className={"userPic"} src={UserPic}></img>
+                </div>}
+            {name == "" &&
+                <div className={"buttons"}>
+                    <button
+                        onClick={() => {
+                            nav("/contactUs")
+                        }}
+                        className={"contactUsBtn button"}>Contact Us
+                    </button>
+                    <button
+                        onClick={() => nav("/login")}
+                        className={"loginBtn button"}>Login
+                    </button>
+                </div>}
         </div>
     );
 }
+
 export default Header;

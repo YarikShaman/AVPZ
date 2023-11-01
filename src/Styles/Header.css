@@ -1,25 +1,29 @@
-.header{
+.header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 26px 100px;
     border-bottom: 1px solid royalblue;
 }
-.siteName{
+
+.siteName {
     text-align: center;
-    font-size: 38px;
+    font-size: 44px;
     font-weight: 500;
 }
-.namePart{
+
+.namePart {
     color: royalblue;
 }
-.unauthorizedButtons{
+
+.buttons {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.button{
-    margin-left: 40px;
+
+.button {
+    margin: 0 20px;
     background-color: royalblue;
     color: white;
     border: none;
@@ -28,14 +32,28 @@
     font-size: 20px;
     cursor: pointer;
 }
-.contactUsBtn{
-    background-color: white;
+
+.headerBtn {
+    margin: 0 10px;
+    background-color: transparent;
     color: black;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 15px;
+    font-size: 20px;
+    cursor: pointer;
 }
-.contactUsBtn:hover{
-    color: white;
-    background-color: royalblue;
+
+.userPic {
+    width: 50px;
+    margin-left: 30px;
+    cursor: pointer;
 }
-.loginBtn:hover{
+
+.headerBtn:hover {
+    color: royalblue;
+}
+
+.loginBtn:hover {
     background-color: black;
 }
