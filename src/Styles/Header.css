@@ -85,13 +85,36 @@
 .linkFooter{
     margin-top: 10px;
     font-size: 18px;
-    text-decoration: underline;
+    color: black;
     cursor: pointer;
 }
 
 .icon{
-    margin:10px 15px 0 0;
     cursor: pointer;
+}
+
+.icon2{
+    display: inline-block;
+    margin:10px 15px 0 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background: white;
+}
+
+.icon2:hover .icon{
+    opacity: 0;
+}
+
+.iconFb:hover{
+    background: url("../Imges/facebookIcon2.svg");
+}
+
+.iconIn:hover{
+    background: url("../Imges/linkedinIcon2.svg");
+}
+.iconX:hover{
+    background: url("../Imges/xIcon2.svg");
 }
 
 .copyright{

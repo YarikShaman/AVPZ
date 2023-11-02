@@ -41,7 +41,7 @@ function Header() {
 
     return (
         <div className={"header"}>
-            <div className={"siteName buttons"}>
+            <div onClick={()=>{nav("/")}} className={"siteName buttons"}>
                 <label className={"namePart"}>tesT</label>
                 <label>eam</label>
             </div>
