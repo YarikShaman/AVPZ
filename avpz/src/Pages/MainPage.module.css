@@ -1,41 +1,139 @@
-.mainBackground{
-    width: 100%;
+.mainBackground {
+    width: fit-content;
+    min-width: 100%;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rebeccapurple;
     flex-direction: column;
 }
-.threeDivs{
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 90%;
-    background: aqua;
+
+.threeDivs {
+    margin-left: 90px;
+    margin-right: 90px;
+    width: 1720px;
     flex-direction: column;
     display: flex;
 }
-.learnMoreDiv{
+
+.learnMoreDiv {
     width: 100%;
-    height: 26vw;
-    background: cadetblue;
-    margin-top: 7vw;
+    height: 569px;
+    margin-top: 122px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
-.picturesDiv{
-    width: 100%;
-    height: 45vw;
-    background: #4f3030;
-    margin-top: 10vw ;
+
+.learnMoreDivText {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.signUpDiv{
-    width: 100%;
-    height: 50vw;
-    background: blue;
-    margin-top: 10vw ;
-    margin-bottom: 7vw ;
+
+.learnMoreDivButton {
+    composes: button1 from "../Global.module.css";
+    margin-top: 74px;
+    height: 80px;
+    width: 226px;
 }
-.contactUsDiv{
+
+
+
+.picturesDiv {
     width: 100%;
-    height: 400px;
-    background: green;
+    height: 1123px;
+    margin-top: 185px;
+    border: #8696FE 4px solid;
+    border-radius: 28px;
+    display: flex;
+    flex-grow: 3;
+    flex-direction: column;
+    box-shadow: 0px 5px 10px 1px grey;
+    align-items: center;
+}
+
+
+
+.picturesDivImg {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    flex-grow: 3;
+    justify-content: space-around;
+    margin-bottom: 60px;
+}
+
+.signUpDiv {
+    width: 100%;
+    height: 1082px;
+    /*background: blue;*/
+    margin-top: 50px;
+    margin-bottom: 91px;
+    align-items: center;
+    display: flex;
+    flex-grow: 3;
+    flex-direction: column;
+}
+
+.signUpDivLevel1{
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+    width: 100%;
+    /*background: red;*/
+    /*flex-grow: 1;*/
+}
+
+.signUpDivLevel2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*background: green;*/
+    flex-grow: 3;
+    justify-content: center;
+}
+
+.signUpDivLevel2Text{
+    font-size: 36px;
+    font-family: sans-serif;
+    font-weight: 400;
+    height: 391px;
+    width: 631px;
+    line-height: 49px;
+    letter-spacing: 1px;
+    /*text-space: 20px;*/
+    /*background: aqua;*/
+    /*text-wrap: normal;*/
+}
+
+.signUpDivLevel2Button{
+    composes: button1 from "../Global.module.css";
+    width: 226px;
+    height: 80px;
+    margin-top: 60px;
+}
+
+.contactUsDiv {
+    width: 100%;
+    height: 534px;
+    /*border: black 4px solid ;*/
+    background: linear-gradient(to bottom, white 267px, rgba(134, 150, 254, 1) 267px,  rgba(134, 150, 254, 1) 323px, rgba(50, 50, 50, 0.3) 324px, white 330px);
+    display: flex;
+    /*align-content: center;*/
+    align-items: center;
+    justify-content: center;
+}
+
+.contactUsDivPanel{
+    height: 534px;
+    width: 1720px;
+    border: rgba(134, 150, 254, 1) 4px solid;
+    border-radius: 28px;
+    background: white;
+}
+.contactUsDivContent{
+    display: flex;
+    flex-direction: column;
 }
