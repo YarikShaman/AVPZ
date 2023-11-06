@@ -1,7 +1,7 @@
 .button1{
     background: #50F2AE;
     color: black;
-    font-family: sans-serif;
+    font-family: "Open Sans";
     font-size: 32px;
     font-weight: 600;
     border-width: 0;
@@ -14,8 +14,7 @@
 
 .titleText {
     font-size: 48px;
-    font-family: sans-serif;
+    font-family: "Open Sans";
     user-select: text;
-    margin-top: 80px;
     font-weight: 600;
 }
