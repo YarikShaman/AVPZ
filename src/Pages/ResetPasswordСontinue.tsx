@@ -53,7 +53,7 @@ function ResetPasswordContinue() {
     return(
         <div>
             {isValid && <div>
-                <div className={"name nameReset"}>
+                <div className={"nameReset"}>
                     <label>Reset Your Password </label>
                 </div>
                 <form className="form" action="#" method="POST" onSubmit={(e) => {
