@@ -13,8 +13,7 @@ function Login() {
     const [errorPassword, setErrorPassword] = useState("");
     const [errorServer, setErrorServer] = useState('');
     const [isRemember, setIsRemember] = useState(false);
-    const nav = useNavigate()
-
+    const nav = useNavigate();
     function LoginConfirming(
         email: string,
         password: string) {
@@ -137,7 +136,7 @@ function Login() {
                             />
                             <label>Remember me</label>
                         </div>
-                        <a href={"/recovery"}>
+                        <a href={"/forgot_password"}>
                             Forgot your password?
                         </a>
                     </div>

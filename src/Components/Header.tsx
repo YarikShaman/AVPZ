@@ -19,7 +19,7 @@ function Header() {
                 setName(resp.data.name);
             }
         ).catch(err=>{
-            switch (err){
+            switch (err.response.status){
                 case 401:
                     localStorage.clear();
                     sessionStorage.clear();
@@ -35,7 +35,6 @@ function Header() {
             } else if (!!sessionStorage.getItem("jwt")) {
                 getName(sessionStorage.getItem("jwt"));
             } else if (!exclusion.includes(location.pathname)) {
-                nav("/login");
             }
         }
     })
