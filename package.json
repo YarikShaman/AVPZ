@@ -10,6 +10,7 @@
     "@types/node": "^16.18.50",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
+    "axios": "^1.6.0",
     "react": "^18.2.0",
     "react-calendar": "^4.6.0",
     "react-dom": "^18.2.0",
@@ -42,5 +43,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.22.11"
   }
 }
