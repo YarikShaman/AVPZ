@@ -2,7 +2,7 @@ import {useEffect, useState} from "react"
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import "../Styles/ResetPassword.css";
-import { CheckPassword } from "../Utilities/CheckPassword";
+import { CheckPassword } from "../../Utilities/CheckPassword";
 
 function ResetPasswordContinue() {
     const [isValid, setIsValid] = useState(false);
