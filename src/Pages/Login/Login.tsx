@@ -1,9 +1,7 @@
 import {useState} from "react";
-import {CheckPassword} from "../Utilities/CheckPassword";
-import "../Styles/Registration.css"
+import "../../Pages/Registration/Registration.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import Header from "../Components/Header"
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -129,7 +127,7 @@ function Login() {
                             <input
                                 type={"checkbox"}
                                 checked={isRemember}
-                                onChange={(e) => {
+                                onChange={() => {
                                     setIsRemember(!isRemember)
                                 }
                                 }

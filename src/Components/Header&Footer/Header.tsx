@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {Link, useLocation, useNavigate} from "react-router-dom";
-import "../Styles/Header.css"
-import UserPic from "../Imges/profilePicture.svg"
+import {useLocation, useNavigate} from "react-router-dom";
+import "./Header.css"
+import UserPic from "../../Img/profilePicture.svg"
 
 function Header() {
     let nav = useNavigate();
@@ -12,8 +12,8 @@ function Header() {
 
     function getName(jwt:string|null) {
         axios.get(
-            "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/profile/",
-            {headers: {Authorization: "Bearer " + jwt}}
+            "https://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/profile/",{headers: {Authorization: "Bearer " + jwt}}
+
         ).then(
             resp => {
                 setName(resp.data.name);
@@ -60,18 +60,18 @@ function Header() {
                     }} className={"headerBtn button"}>Statistics
                     </button>
                     <button onClick={() => {
-                        nav("/contactUs")
+                        nav("/contact")
                     }} className={"headerBtn button"}>Contact Us
                     </button>
                     <img onClick={() => {
-                        nav("/profile")
+                        nav("/user_profile")
                     }} className={"userPic"} src={UserPic}></img>
                 </div>}
             {name == "" &&
                 <div className={"buttons"}>
                     <button
                         onClick={() => {
-                            nav("/contactUs")
+                            nav("/contact")
                         }}
                         className={"contactUsBtn button"}>Contact Us
                     </button>

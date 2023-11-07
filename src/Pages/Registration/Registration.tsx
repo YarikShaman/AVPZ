@@ -1,9 +1,8 @@
 import {useState} from "react";
-import {CheckPassword} from "../Utilities/CheckPassword";
-import "../Styles/Registration.css"
+import {CheckPassword} from "../../Utilities/CheckPassword";
+import "./Registration.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
-import Header from "../Components/Header"
 
 function Registration() {
     const [companyName, setCompanyName] = useState("");

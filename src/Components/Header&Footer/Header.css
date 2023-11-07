@@ -107,14 +107,14 @@
 }
 
 .iconFb:hover{
-    background: url("../Imges/facebookIcon2.svg");
+    background: url("../../Img/facebookIcon2.svg");
 }
 
 .iconIn:hover{
-    background: url("../Imges/linkedinIcon2.svg");
+    background: url("../../Img/linkedinIcon2.svg");
 }
 .iconX:hover{
-    background: url("../Imges/xIcon2.svg");
+    background: url("../../Img/xIcon2.svg");
 }
 
 .copyright{

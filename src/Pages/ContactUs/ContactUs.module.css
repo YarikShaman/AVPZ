@@ -1,0 +1,67 @@
+.mainBackground {
+    width: fit-content;
+    min-width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contactDiv{
+    /*background: #61dafb;*/
+    width: 1720px;
+    height: 735px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contactDivTitle{
+    text-align: center;
+}
+
+.contactDivContent{
+    /*background: aqua;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contactDivContentText{
+    width:611px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.contactDivContentTextLeftCol{
+    display: flex;
+    flex-direction: column;
+}
+
+.contactDivContentTextRightCol{
+    display: flex;
+    flex-direction: column;
+}
+
+.textSmallBlack{
+    font-family: "Open Sans";
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 44px;
+    color: rgb(30, 30, 30);
+}
+
+.textSmallBlue{
+    font-family: "Open Sans";
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 44px;
+    color: rgb(73, 66, 228);
+}
+
+.textMargin{
+    margin-top: 39px;
+}
