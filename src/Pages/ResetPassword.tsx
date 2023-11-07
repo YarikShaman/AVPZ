@@ -1,26 +1,53 @@
-import  {useState} from "react"
+import {useState} from "react"
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 import "../Styles/ResetPassword.css";
 
 function ResetPassword() {
     const [email, setEmail] = useState("");
     const [errorEmail, setErrorEmail] = useState("");
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const [emailDelay, setEmailDelay] = useState(15000)
+    const [isSent, setIsSent] = useState(false);
     const nav = useNavigate()
 
     function EmailSend(email: string) {
+        if (isSent) return;
+        axios.post("http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/auth/forgot-password/", {
+            email: email
+        }).catch((err) => {
+            switch (err.response.status) {
+                case 400:
+                    setErrorEmail("User with this email is not registered in the system");
+                    break;
+                case 422:
+                    setErrorEmail(err.response.detail.msg);
+                    break;
+                case 500:
+                    setErrorEmail("Server is down, try later");
+                    break;
+            }
+        }).then(() => {
+            setIsSent(true);
+        })
+        setIsButtonDisabled(true);
+        setTimeout(() => {
+            setIsButtonDisabled(false);
+        }, emailDelay);
+        setEmailDelay(emailDelay * 4);
 
     }
 
     return (
         <div>
             <div className={"name nameReset"}>
-                <label>Reset your password</label>
+                <label>Reset Your Password</label>
             </div>
             <form className="form" action="#" method="POST" onSubmit={(e) => {
                 e.preventDefault();
                 EmailSend(email)
             }}>
-                <div className={"block"}>
+                <div className={"blockReset"}>
                     <div className={"label"}>
                         <label htmlFor="email">
                             Email
@@ -45,7 +72,7 @@ function ResetPassword() {
                     />
                     <div style={{color: "red"}}>{errorEmail}</div>
                 </div>
-                <button className={"button buttonReset"} type={"submit"}>Continiue</button>
+                <button disabled={isButtonDisabled} className={"button"} type={"submit"}>Continiue</button>
             </form>
             <button className={"buttonBack"} onClick={() => {
                 nav("/login")
@@ -56,6 +83,11 @@ function ResetPassword() {
                         fill="#1E1E1E"/>
                 </svg>
                 <label className={"labelBack"}> Back to log in</label></button>
+            {isSent && (
+                <div className="successMessage">
+                    Email has been sent! Check your inbox.
+                </div>
+            )}
         </div>
     )
 }
