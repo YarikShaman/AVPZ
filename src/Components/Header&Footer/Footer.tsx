@@ -1,9 +1,9 @@
-import fbIcon from "../Imges/facebookIcon.svg"
-import inIcon from "../Imges/linkedinIcon.svg"
-import xIcon from "../Imges/xIcon.svg"
-import fbIcon2 from "../Imges/facebookIcon2.svg"
-import inIcon2 from "../Imges/linkedinIcon2.svg"
-import xIcon2 from "../Imges/xIcon2.svg"
+import fbIcon from "../../Img/facebookIcon.svg"
+import inIcon from "../../Img/linkedinIcon.svg"
+import xIcon from "../../Img/xIcon.svg"
+import fbIcon2 from "../../Img/facebookIcon2.svg"
+import inIcon2 from "../../Img/linkedinIcon2.svg"
+import xIcon2 from "../../Img/xIcon2.svg"
 
 function Footer() {
     return (

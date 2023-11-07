@@ -1,15 +1,15 @@
 import React from "react";
 import styles from './MainPage.module.css'
-import global from '../Global.module.css'
-import pictures1 from '../Img/MainPage/increased efficiency.svg'
-import pictures2 from '../Img/MainPage/Improved communication.svg'
-import pictures3 from '../Img/MainPage/Optimizing hiring processes.svg'
-import pictures4 from '../Img/MainPage/Strategic Analysis.svg'
-import pictures5 from '../Img/MainPage/Save time and resources.svg'
-import pictures6 from '../Img/MainPage/Effective learning management.svg'
-import banner1 from '../Img/MainPage/Main Picture.svg'
-import banner2 from '../Img/MainPage/Char 11.svg'
-import contactIcons from '../Img/MainPage/Contact_icons.svg'
+import global from '../../Global.module.css'
+import pictures1 from '../../Img/MainPage/increased efficiency.svg'
+import pictures2 from '../../Img/MainPage/Improved communication.svg'
+import pictures3 from '../../Img/MainPage/Optimizing hiring processes.svg'
+import pictures4 from '../../Img/MainPage/Strategic Analysis.svg'
+import pictures5 from '../../Img/MainPage/Save time and resources.svg'
+import pictures6 from '../../Img/MainPage/Effective learning management.svg'
+import banner1 from '../../Img/MainPage/Main Picture.svg'
+import banner2 from '../../Img/MainPage/Char 11.svg'
+import contactIcons from '../../Img/MainPage/Contact_icons.svg'
 import {useNavigate} from "react-router-dom";
 
 function MainPage() {

@@ -33,7 +33,7 @@
 }
 
 .learnMoreDivButton {
-    composes: button1 from "../Global.module.css";
+    composes: button1 from "../../Global.module.css";
     margin-top: 74px;
     height: 80px;
     width: 226px;
@@ -50,7 +50,7 @@
     display: flex;
     flex-grow: 3;
     flex-direction: column;
-    box-shadow: 0px 5px 10px 1px grey;
+    box-shadow: 0 5px 10px 1px grey;
     align-items: center;
 }
 
@@ -106,7 +106,7 @@
 }
 
 .signUpDivLevel2Button{
-    composes: button1 from "../Global.module.css";
+    composes: button1 from "../../Global.module.css";
     width: 226px;
     height: 80px;
     margin-top: 60px;
@@ -160,7 +160,7 @@
 }
 
 .contactUsDivContentButton{
-    composes: button1 from '../Global.module.css';
+    composes: button1 from '../../Global.module.css';
     z-index: 3;
     width: 290px;
     height: 80px;

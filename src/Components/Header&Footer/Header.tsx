@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
-import "../Styles/Header.css"
-import UserPic from "../Imges/profilePicture.svg"
+import "./Header.css"
+import UserPic from "../../Img/profilePicture.svg"
 
 function Header() {
     let nav = useNavigate();
@@ -60,18 +60,18 @@ function Header() {
                     }} className={"headerBtn button"}>Statistics
                     </button>
                     <button onClick={() => {
-                        nav("/contactUs")
+                        nav("/contact")
                     }} className={"headerBtn button"}>Contact Us
                     </button>
                     <img onClick={() => {
-                        nav("/profile")
+                        nav("/user_profile")
                     }} className={"userPic"} src={UserPic}></img>
                 </div>}
             {name == "" &&
                 <div className={"buttons"}>
                     <button
                         onClick={() => {
-                            nav("/contactUs")
+                            nav("/contact")
                         }}
                         className={"contactUsBtn button"}>Contact Us
                     </button>

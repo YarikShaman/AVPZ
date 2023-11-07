@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './ContactUs.module.css'
-import global from '../Global.module.css'
-import contactUsImg from '../Img/ContactUs/ContactUsImg.svg'
+import global from "../../Global.module.css"
+import contactUsImg from '../../Img/ContactUs/ContactUsImg.svg'
 
 export default function ContactUs(){
 
