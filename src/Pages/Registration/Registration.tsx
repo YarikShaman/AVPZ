@@ -48,7 +48,7 @@ function Registration() {
                     title: companyName
                 },{headers: {Authorization: "Bearer " + jwt}})
             })
-            nav("../");
+            nav("../login");
         }).catch(err => {
             switch (err.response.status) {
                 case 400:
