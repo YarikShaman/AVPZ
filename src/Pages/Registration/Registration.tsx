@@ -35,8 +35,19 @@ function Registration() {
         axios.post("http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/auth/signup/", {
             email: email,
             name: firstName + " " + lastName,
+            phone_number: phoneNumber,
             password: password,
         }).then(resp => {
+            if(companyName!="")
+            axios.post("http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/auth/login/", {
+                email: email,
+                password: password
+            }).then(resp => {
+                let jwt = resp.data.token;
+                axios.post("http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/companies/create/", {
+                    title: companyName
+                },{headers: {Authorization: "Bearer " + jwt}})
+            })
             nav("../");
         }).catch(err => {
             switch (err.response.status) {
@@ -73,7 +84,6 @@ function Registration() {
                             <label htmlFor="companyName">
                                 Company name
                             </label>
-                            <label style={{color: "red"}}>*</label>
                         </div>
                         <input
                             className={"input"}
@@ -90,7 +100,6 @@ function Registration() {
                             name="companyName"
                             type="text"
                             autoComplete="companyName"
-                            required
                         />
                         <div style={{color: "red"}}>{errorCompanyName}</div>
                     </div>
@@ -151,7 +160,6 @@ function Registration() {
                             <label htmlFor="phone">
                                 Phone number
                             </label>
-                            <label style={{color: "red"}}>*</label>
                         </div>
                         <input
                             className={"input"}
@@ -168,7 +176,6 @@ function Registration() {
                             name="phoneNumber"
                             type="tel"
                             autoComplete="tel"
-                            required
                         />
                         <div style={{color: "red"}}>{errorPhoneNumber}</div>
                     </div>

@@ -1,7 +1,7 @@
 import {useState} from "react"
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import "../Styles/ResetPassword.css";
+import "./ResetPassword.css";
 
 function ResetPassword() {
     const [email, setEmail] = useState("");
