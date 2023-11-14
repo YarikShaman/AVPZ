@@ -6,6 +6,7 @@ import MainPage from "./Pages/MainPage/MainPage";
 import Registration from "./Pages/Registration/Registration";
 import Login from "./Pages/Login/Login";
 import ContactUs from "./Pages/ContactUs/ContactUs";
+import UserProfile from './Pages/UserProfile/UserProfile'
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="/contact" element={<ContactUs />}/>
             <Route path="/signup" element={<Registration />}/>
             <Route path="/login" element={<Login />}/>
+            <Route path="/user_profile" element={<UserProfile />}/>
         </Routes>
     );
 }

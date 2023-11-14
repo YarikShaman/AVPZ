@@ -37,7 +37,7 @@ function Registration() {
             name: firstName + " " + lastName,
             password: password,
         }).then(resp => {
-            nav("../");
+            nav("../login");
         }).catch(err => {
             switch (err.response.status) {
                 case 400:

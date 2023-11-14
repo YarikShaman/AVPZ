@@ -1,9 +1,95 @@
 .mainBackground {
     width: fit-content;
     min-width: 100%;
-    min-height: 100vh;
+    /*min-height: 100vh;*/
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    /*padding-bottom:184px;*/
+}
+
+.profileDiv{
+    height: 730px;
+    width: 676px;
+    border: 1px rgb(207, 204, 204) solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 75px;
+
+}
+
+.profileDivTable{
+    /*background: #61dafb;*/
+    margin-top: 56px;
+    width: 600px;
+}
+
+.profileDivTable td{
+    min-height: 50px;
+    /*border: 1px black solid;*/
+    padding-bottom: 18px;
+}
+
+.profileDivTable td:nth-child(1){
+    font-family: "Open Sans";
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    color: rgb(73, 66, 228);
+    width: 50%;
+}
+
+.profileDivTable td:nth-child(2){
+    font-family: "Open Sans";
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    color: rgb(30, 30, 30);
+    width: 50%;
+}
+
+.profileDivSettings{
+    /*background: #8696FE;*/
+
+}
+
+.profileDivSettingsTitle{
+    width: 600px;
+    text-align: start;
+    color: rgb(30, 30, 30);
+    font-family: "Open Sans";
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 26px;
+}
+
+.profileDivSettings{
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin-bottom: 40px;
+}
+
+.profileDivSettingsDiv>*{
+    margin-bottom: 19px;
+}
+
+.profileDivSettingsDivButton{
+    color: rgb(30, 30, 30);
+    font-weight: 400;
+    font-size: 28px;
+    font-family: "Open Sans";
+    cursor: pointer;
+}
+
+.profileDivSettingsDivLine{
+    width: 100%;
+    border: 1px rgb(207, 204, 204) solid
+}
+
+.profileDivSettingsDivSvg{
+    cursor: pointer;
 }

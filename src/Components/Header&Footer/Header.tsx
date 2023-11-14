@@ -11,7 +11,7 @@ function Header() {
 
     function getName(jwt:string|null) {
         axios.get(
-            "https://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/profile/",{headers: {Authorization: "Bearer " + jwt}}
+            "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/profile/",{headers: {Authorization: "Bearer " + jwt}}
 
         ).then(
             resp => {
