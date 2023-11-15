@@ -1,15 +1,18 @@
-.login{
+.login {
     height: 58vh;
 }
-.form{
+
+.form {
     text-align: center;
 }
-.block{
+
+.block {
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
-.buttonShow{
+
+.buttonShow {
     position: absolute;
     z-index: 1;
     right: 39%;
@@ -21,7 +24,8 @@
     border: transparent;
     background: transparent;
 }
-.input{
+
+.input {
     padding: 5px 10px;
     font-size: 18px;
     width: 20%;
@@ -29,64 +33,82 @@
     height: 30px;
     border-radius: 100px;
 }
-.label{
+
+.label {
     text-indent: 40%;
     text-align: left;
     margin: 2px;
     font-size: 20px;
     font-weight: 500;
 }
-.buttonConfirm{
+
+.buttonConfirm {
     margin-top: 30px;
     background-color: royalblue;
     color: white;
     border: none;
+    min-width: 160px;
     padding: 16px 34px;
     border-radius: 15px;
     font-size: 26px;
     cursor: pointer;
 }
-.buttonConfirm:hover{
+
+.buttonConfirm:hover {
     background-color: black;
 }
-.name{
-    margin:50px 0 30px 0 ;
+
+.buttonCancel {
+    background-color: #858484;
+    margin-left: 90px;
+}
+
+.name {
+    margin: 50px 0 30px 0;
     text-align: center;
     font-size: 38px;
     font-weight: 500;
 }
-.namePart2{
+
+.namePart2 {
     color: royalblue;
 }
-.loginRedirect{
+
+.loginRedirect {
     margin-top: 20px;
     text-align: center;
 }
-.lowerDiv{
+
+.lowerDiv {
     width: 20%;
-    margin: 20px auto ;
+    margin: 20px auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.serverError{
+
+.serverError {
     border: 1px solid red;
     width: 20%;
     font-size: 18px;
     background: rgba(255, 0, 0, 0.1);
     margin: auto;
 }
+
 @media (orientation: portrait) {
-    .input{
+    .input {
         width: 90%;
     }
-    .buttonShow{
+
+    .buttonShow {
         right: 1%;
     }
-    .label{
+
+    .label {
         text-indent: 5%;
     }
-    .serverError{
+
+    .serverError {
         width: 90%;
     }
 }

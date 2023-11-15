@@ -10,6 +10,7 @@ import Registration from "./Pages/Registration/Registration";
 import Login from "./Pages/Login/Login";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import UserProfile from './Pages/UserProfile/UserProfile'
+import EditProfile from './Pages/EditProfile/EditProfile';
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/signup" element={<Registration />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/user_profile" element={<UserProfile />}/>
+            <Route path="/user_profile/edit" element={<EditProfile />}/>
             <Route path="/forgot_password" element={<ResetPassword/>}/>
             <Route path="/forgot_password/reset/" element={<ResetPasswordContinue/>}/>
         </Routes>

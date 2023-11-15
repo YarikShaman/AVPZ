@@ -91,7 +91,7 @@ export default function UserProfile() {
                     <div className={styles.profileDivSettingsDiv}>
                         <div className={styles.profileDivSettingsDivButton}  onClick={()=>{nav('/')}}>Reset Password</div>
                         <div className={styles.profileDivSettingsDivLine}></div>
-                        <div className={styles.profileDivSettingsDivButton}  onClick={()=>{nav('/')}}>Edit Profile</div>
+                        <div className={styles.profileDivSettingsDivButton}  onClick={()=>{nav('/user_profile/edit')}}>Edit Profile</div>
                         <div className={styles.profileDivSettingsDivLine}></div>
                         <svg className={styles.profileDivSettingsDivSvg} onClick={()=>{nav('/')}} width="123" height="38" viewBox="0 0 123 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
