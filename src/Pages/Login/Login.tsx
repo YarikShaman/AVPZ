@@ -21,6 +21,7 @@ function Login() {
         }).then(resp => {
             if (isRemember) localStorage["jwt"] = resp.data.token;
             else sessionStorage["jwt"] = resp.data.token;
+            window.location.reload();
             nav("../");
         }).catch(err => {
             switch (err.response.status) {

@@ -8,7 +8,7 @@ function Header() {
     let nav = useNavigate();
     const location = useLocation();
     const [name, setName] = useState("");
-    const exclusion = ["/login","/signup", "/forgot_password"]
+    const exclusion = ["/login","/signup", "/forgot_password","/forgot_password/reset/"]
 
     function getName(jwt:string|null) {
         axios.get(
@@ -35,9 +35,10 @@ function Header() {
             } else if (!!sessionStorage.getItem("jwt")) {
                 getName(sessionStorage.getItem("jwt"));
             } else if (!exclusion.includes(location.pathname)) {
+                nav("/")
             }
         }
-    })
+    },[])
 
     return (
         <div className={"header"}>
