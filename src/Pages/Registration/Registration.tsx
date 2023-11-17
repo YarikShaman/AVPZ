@@ -31,6 +31,7 @@ function Registration() {
         firstName: string,
         lastName: string,
         phoneNumber: string) {
+        if(errorCompanyName!=""||errorFirstName!=""||errorLastName!=""||errorEmail!=""||errorPassword1!=""||errorPassword2!=""||errorPhoneNumber!="") return;
         setErrorServer("");
         axios.post("http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/auth/signup/", {
             email: email,

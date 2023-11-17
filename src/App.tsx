@@ -11,6 +11,7 @@ import Login from "./Pages/Login/Login";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import UserProfile from './Pages/UserProfile/UserProfile'
 import EditProfile from './Pages/EditProfile/EditProfile';
+import CompanyRegistration from './Pages/CompanyRegistration/CompanyRegistration';
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/user_profile/edit" element={<EditProfile />}/>
             <Route path="/forgot_password" element={<ResetPassword/>}/>
             <Route path="/forgot_password/reset/" element={<ResetPasswordContinue/>}/>
+            <Route path="/companies/create" element={<CompanyRegistration />}/>
         </Routes>
     );
 }

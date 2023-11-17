@@ -15,6 +15,7 @@ function Login() {
     function LoginConfirming(
         email: string,
         password: string) {
+        if (errorEmail!="" || errorPassword!="") return
         axios.post("http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/auth/login/", {
             email: email,
             password: password
