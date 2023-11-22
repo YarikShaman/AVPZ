@@ -1,0 +1,15 @@
+.compDiv{
+    text-align: center;
+}
+.compLabel{
+    text-align: center;
+    font-size: 34px;
+    font-weight: 500;
+    margin: 45px 25px 25px 25px;
+}
+.addMoreBtn{
+    background: black;
+}
+.addMoreBtn:hover{
+    background: #858484;
+}

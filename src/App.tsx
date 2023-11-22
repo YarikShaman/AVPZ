@@ -12,6 +12,7 @@ import ContactUs from "./Pages/ContactUs/ContactUs";
 import UserProfile from './Pages/UserProfile/UserProfile'
 import EditProfile from './Pages/EditProfile/EditProfile';
 import CompanyRegistration from './Pages/CompanyRegistration/CompanyRegistration';
+import CompaniesList from './Pages/CompaniesList/CompaniesList';
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/forgot_password" element={<ResetPassword/>}/>
             <Route path="/forgot_password/reset/" element={<ResetPasswordContinue/>}/>
             <Route path="/companies/create" element={<CompanyRegistration />}/>
+            <Route path="/companies" element={<CompaniesList />}/>
         </Routes>
     );
 }
