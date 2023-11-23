@@ -4,6 +4,7 @@ import global from '../../Global.module.css'
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import UserData from "../../Components/Interface/UserData"
+import { SaveJWT } from "../../Utilities/SaveJWT";
 
 export default function EditProfile() {
     const [data, setData] = useState<UserData>()
@@ -16,16 +17,6 @@ export default function EditProfile() {
         let jwt = SaveJWT();
         GetData(jwt);
     }, [])
-
-    function SaveJWT() {
-        if (!!localStorage.getItem("jwt")) {
-            return localStorage.getItem("jwt");
-        } else if (!!sessionStorage.getItem("jwt")) {
-            return sessionStorage.getItem("jwt");
-        } else {
-            return "error"
-        }
-    }
 
     function GetData(jwt: string | null) {
         axios.get(

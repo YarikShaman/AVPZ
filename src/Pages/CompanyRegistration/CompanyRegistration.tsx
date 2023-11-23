@@ -2,22 +2,13 @@ import React, {useState} from "react";
 import "../Registration/Registration.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
+import { SaveJWT } from "../../Utilities/SaveJWT";
 
 function CompanyRegistration() {
     const [companyName, setCompanyName] = useState("");
     const [errorCompanyName, setErrorCompanyName] = useState("");
     const [errorServer, setErrorServer] = useState('');
     const nav = useNavigate()
-
-    function SaveJWT() {
-        if (!!localStorage.getItem("jwt")) {
-            return localStorage.getItem("jwt");
-        } else if (!!sessionStorage.getItem("jwt")) {
-            return sessionStorage.getItem("jwt");
-        } else {
-            return "error"
-        }
-    }
     function RegistrationConfirming(
         companyName: string) {
         setErrorServer("");

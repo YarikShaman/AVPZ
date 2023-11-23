@@ -4,6 +4,7 @@ import global from '../../Global.module.css'
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import UserData from "../../Components/Interface/UserData"
+import { SaveJWT } from "../../Utilities/SaveJWT";
 
 export default function UserProfile() {
     const [data, setData] = useState<UserData>()
@@ -33,11 +34,8 @@ export default function UserProfile() {
     }
 
     useEffect(() => {
-        if (!!localStorage.getItem("jwt")) {
-            GetData(localStorage.getItem("jwt"));
-        } else if (!!sessionStorage.getItem("jwt")) {
-            GetData(sessionStorage.getItem("jwt"));
-        }},[])
+        GetData(SaveJWT())
+        },[])
 
     return (
         <div className={styles.mainBackground}>

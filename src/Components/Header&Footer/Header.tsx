@@ -3,6 +3,7 @@ import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
 import "./Header.css"
 import UserPic from "../../Img/profilePicture.svg"
+import { SaveJWT } from "../../Utilities/SaveJWT";
 
 function Header() {
     let nav = useNavigate();
@@ -30,11 +31,10 @@ function Header() {
 
     useEffect(() => {
         if (name === "") {
-            if (!!localStorage.getItem("jwt")) {
-                getName(localStorage.getItem("jwt"));
-            } else if (!!sessionStorage.getItem("jwt")) {
-                getName(sessionStorage.getItem("jwt"));
-            } else if (!exclusion.includes(location.pathname)) {
+            let jwt = SaveJWT()
+            getName(jwt)
+            if(!jwt)
+            if (!exclusion.includes(location.pathname)) {
                 nav("/")
             }
         }

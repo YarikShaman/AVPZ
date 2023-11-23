@@ -34,7 +34,7 @@
 }
 .text {
     position: absolute;
-    width: 160px;
+    width: 260px;
     height: 33px;
     top: 0;
     left: 0;
@@ -49,7 +49,7 @@
 }
 .text-2 {
     position: absolute;
-    width: 152px;
+    width: 260px;
     height: 16px;
     top: 42px;
     left: 0;
@@ -64,7 +64,7 @@
 }
 .text-3 {
     position: absolute;
-    width: 143px;
+    width: 260px;
     height: 16px;
     top: 62px;
     left: 0;
@@ -79,7 +79,7 @@
 }
 .text-4 {
     position: absolute;
-    width: 211px;
+    width: 240px;
     height: 16px;
     top: 82px;
     left: 0;
@@ -94,7 +94,7 @@
 }
 .box-2 {
     position: absolute;
-    width: 235px;
+    width: 240px;
     height: 16px;
     top: 102px;
     left: 0;

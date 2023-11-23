@@ -1,5 +1,7 @@
 .compDiv{
     text-align: center;
+    min-height: 554px;
+    margin-top: 50px;
 }
 .compLabel{
     text-align: center;
