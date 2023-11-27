@@ -13,6 +13,7 @@ import UserProfile from './Pages/UserProfile/UserProfile'
 import EditProfile from './Pages/EditProfile/EditProfile';
 import CompanyRegistration from './Pages/CompanyRegistration/CompanyRegistration';
 import CompaniesList from './Pages/CompaniesList/CompaniesList';
+import TestCreation from './Pages/TestCreation/TestCreation';
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/forgot_password/reset/" element={<ResetPasswordContinue/>}/>
             <Route path="/companies/create" element={<CompanyRegistration />}/>
             <Route path="/companies" element={<CompaniesList />}/>
+            <Route path="/tests/create" element={<TestCreation />}/>
         </Routes>
     );
 }

@@ -1,0 +1,175 @@
+.nameInputs {
+    border: transparent;
+    background: transparent;
+}
+
+.nameInputs:focus {
+    outline: none;
+}
+
+.testCreation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.stepsDiv {
+    border: 1px solid #4C0E97;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 720px;
+    padding: 26px 70px;
+    margin-bottom: 30px;
+}
+
+.stepsLabel {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.stepsNum {
+    display: flex;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin: 0 20px;
+    font-size: 26px;
+    border-radius: 100px;
+    background: #4C0E97;
+    color: white;
+}
+
+.firstCreationDiv {
+    width: 860px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.testNameDiv {
+    padding: 50px 70px;
+    width: 720px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid #9895D1;
+    border-radius: 30px;
+    background: #9895D1;
+}
+
+.nameInput {
+    color: #4C0E97;
+    font-size: 32px;
+    font-weight: 600;
+    border-bottom: 2px solid #4C0E97;
+    margin-bottom: 20px;
+}
+
+.nameInput::placeholder {
+    color: #4C0E97;
+}
+
+.descInput {
+    background: transparent;
+    color: #ffffff;
+    border-bottom: 2px solid white;
+    font-size: 24px;
+}
+
+.descInput::placeholder {
+    color: #ffffff;
+}
+
+.timeDiv {
+    width: 720px;
+    margin: 24px 0;
+    border: 1px solid #9895D1;
+    background: #E4E2FE;
+    border-radius: 30px;
+    padding: 40px 70px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.timeLimitDiv {
+    margin-bottom: 20px;
+}
+
+.dateLimitDiv {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    gap: 10px;
+}
+
+.timeLimitLabel {
+    color: #9747FF;
+    margin-right: 33px;
+}
+
+.inputTime {
+    font-size: 24px;
+    width: 110px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid #9895D1;
+}
+
+.inputDate {
+    font-size: 24px;
+    width: 180px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid #9895D1;
+}
+.tagsDiv{
+    width: 720px;
+    border: 1px solid #9895D1;
+    background: #E4E2FE;
+    border-radius: 30px;
+    padding: 40px 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.searchDiv {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #949494;
+    border-radius: 10px;
+    width: 350px;
+    background: white;
+    margin-bottom: 20px;
+}
+
+.searchTag {
+    padding-left: 10px;
+    width: 330px;
+}
+
+.createNewTag{
+    margin-top: 20px;
+    background: black;
+    color: white;
+    font-size: 16px;
+    width: 170px;
+    height: 42px;
+    border-radius: 15px;
+    border: none;
+}
+.nextBtn{
+    width: 230px;
+}
+.buttonBack{
+    position: absolute;
+    left: 90px;
+    top: 120px;
+    margin: 0;
+}

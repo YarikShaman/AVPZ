@@ -69,7 +69,7 @@ export default function UserProfile() {
                 <div className={styles.profileDivSettings}>
                     <div className={`${styles.profileDivSettingsTitle}`}>Settings</div>
                     <div className={styles.profileDivSettingsDiv}>
-                        <div className={styles.profileDivSettingsDivButton}  onClick={()=>{nav('/')}}>Reset Password</div>
+                        <div className={styles.profileDivSettingsDivButton}  onClick={()=>{nav('/forgot_password')}}>Reset Password</div>
                         <div className={styles.profileDivSettingsDivLine}></div>
                         <div className={styles.profileDivSettingsDivButton}  onClick={()=>{nav('/user_profile/edit')}}>Edit Profile</div>
                         <div className={styles.profileDivSettingsDivLine}></div>
