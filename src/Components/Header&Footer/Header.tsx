@@ -11,9 +11,9 @@ function Header() {
     const [name, setName] = useState("");
     const exclusion = ["/login","/signup", "/forgot_password","/forgot_password/reset/"]
 
-    function getName(jwt:string|null) {
+    function getName() {
         axios.get(
-            "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/profile/",{headers: {Authorization: "Bearer " + jwt}}
+            "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/profile/",{headers: {Authorization: "Bearer " + SaveJWT()}}
 
         ).then(
             resp => {
@@ -31,9 +31,8 @@ function Header() {
 
     useEffect(() => {
         if (name === "") {
-            let jwt = SaveJWT()
-            getName(jwt)
-            if(!jwt)
+            getName()
+            if(!SaveJWT())
             if (!exclusion.includes(location.pathname)) {
                 nav("/")
             }

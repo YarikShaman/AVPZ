@@ -21,7 +21,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 720px;
+    width: 658px;
     padding: 26px 70px;
     margin-bottom: 30px;
 }
@@ -40,12 +40,17 @@
     margin: 0 20px;
     font-size: 26px;
     border-radius: 100px;
-    background: #4C0E97;
     color: white;
 }
+.stepsNum1{
+    background: #CFCCCC;
 
+}
+.stepsNum2{
+    background: #4C0E97;
+}
 .firstCreationDiv {
-    width: 860px;
+    width: 800px;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -53,7 +58,7 @@
 
 .testNameDiv {
     padding: 50px 70px;
-    width: 720px;
+    width: 658px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -86,7 +91,7 @@
 }
 
 .timeDiv {
-    width: 720px;
+    width: 658px;
     margin: 24px 0;
     border: 1px solid #9895D1;
     background: #E4E2FE;
@@ -127,7 +132,7 @@
     border: 1px solid #9895D1;
 }
 .tagsDiv{
-    width: 720px;
+    width: 658px;
     border: 1px solid #9895D1;
     background: #E4E2FE;
     border-radius: 30px;
@@ -164,12 +169,102 @@
     border-radius: 15px;
     border: none;
 }
-.nextBtn{
-    width: 230px;
-}
 .buttonBack{
     position: absolute;
     left: 90px;
     top: 120px;
     margin: 0;
+}
+.newTagDiv{
+    background:rgba(0, 0, 0, 0.3);
+    position: fixed;
+    left: 0;
+    top:0;
+    right: 0;
+    bottom:0;
+}
+.innerNewTagDiv{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15vh;
+    background: #50F2AE;
+    width: 540px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 40px 180px;
+    border-radius: 30px;
+}
+.createTagLabelBig{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+.createTagLabelSmall{
+    font-size: 28px;
+    margin: 10px;
+ }
+.createTagInput{
+    padding: 5px 10px;
+    font-size: 24px;
+    width: 540px;
+    border-radius: 10px;
+    border: 1px solid #9895D1;
+}
+.btnConfirmNewTag{
+    margin-top: 70px;
+    background: black;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    border: none;
+    min-width: 160px;
+    padding: 16px 34px;
+    border-radius: 15px;
+    font-size: 26px;
+    cursor: pointer;
+}
+.btnBackToFirst{
+    margin-top: 30px;
+    position: static;
+    transform: none;
+}
+.createTagBtnClose{
+    cursor: pointer;
+    position: absolute;
+    right: 3%;
+    top: 3%;
+}
+.testCreationBtn:hover{
+    background: #858484;
+}
+.nextBtn{
+    width: 200px;
+    margin-top: 30px;
+    margin-right: 100px;
+    background-color: royalblue;
+    color: white;
+    border: none;
+    padding: 16px 34px;
+    border-radius: 15px;
+    font-size: 26px;
+    cursor: pointer;
+}
+.nextBtn:hover{
+    background: black;
+}
+.confirmCreationDiv{
+    display: flex;
+    justify-content: space-between;
+    width:600px;
+}
+.btnSaveCreation{
+    margin-top: 30px;
+    width: 200px;
 }

@@ -7,8 +7,8 @@ import {useNavigate} from "react-router-dom"
 import {SaveJWT} from "../../Utilities/SaveJWT";
 
 function TestCreation() {
-    const [companyName, setCompanyName] = useState("");
-    const [errorCompanyName, setErrorCompanyName] = useState("");
+    const [isOpenedTagCreation, setIsOpenedTagCreation] = useState(false);
+    const [isOpenedSecondPage, setIsOpenedSecondPage] = useState(false);
     const [errorServer, setErrorServer] = useState('');
     const nav = useNavigate()
 
@@ -33,40 +33,41 @@ function TestCreation() {
                 </div>
                 <div className={"stepsDiv"}>
                     <div className={"stepsLabel"}>Steps:</div>
-                    <div className={"stepsNum"}>1</div>
-                    <div className={"stepsLabel"}>Test Setup</div>
-                    <div className={"stepsNum"}>2</div>
+                    <div className={`stepsNum ${isOpenedSecondPage ? 'stepsNum1' : 'stepsNum2'}`}>1</div>
+                    <div className={"stepsLabe l"}>Test Setup</div>
+                    <div className={`stepsNum ${isOpenedSecondPage ? 'stepsNum2' : 'stepsNum1'}`}>2</div>
                     <div className={"stepsLabel"}>Creating Questions</div>
                 </div>
-                <div className={"firstCreationDiv"}>
-                    <div className={"testNameDiv"}>
-                        <input className={"nameInput nameInputs"} placeholder={"Type Test Name"}>
+                {!isOpenedSecondPage &&
+                    <div className={"firstCreationDiv"}>
+                        <div className={"testNameDiv"}>
+                            <input className={"nameInput nameInputs"} placeholder={"Type Test Name"}>
 
-                        </input>
-                        <input className={"descInput nameInputs"} placeholder={"Type Test Description"}>
+                            </input>
+                            <input className={"descInput nameInputs"} placeholder={"Type Test Description"}>
 
-                        </input>
-                    </div>
-                    <div className={"timeDiv"}>
-                        <div className={"timeLimitDiv"}>
-                            <label className={"timeLimitLabel"}>Time Limit</label>
-                            <input className={"inputTime"} type={"time"}></input>
+                            </input>
                         </div>
-                        <div className={"dateLimitDiv"}>
-                            <label>Start Date</label>
-                            <input className={"inputDate"} type={"date"}></input>
-                            <label>Start Time</label>
-                            <input className={"inputTime"} type={"time"}></input>
-                            <label>End Date</label>
-                            <input className={"inputDate"} type={"date"}></input>
-                            <label>End Time</label>
-                            <input className={"inputTime"} type={"time"}></input>
+                        <div className={"timeDiv"}>
+                            <div className={"timeLimitDiv"}>
+                                <label className={"timeLimitLabel"}>Time Limit</label>
+                                <input className={"inputTime"} type={"time"}></input>
+                            </div>
+                            <div className={"dateLimitDiv"}>
+                                <label>Start Date</label>
+                                <input className={"inputDate"} type={"date"}></input>
+                                <label>Start Time</label>
+                                <input className={"inputTime"} type={"time"}></input>
+                                <label>End Date</label>
+                                <input className={"inputDate"} type={"date"}></input>
+                                <label>End Time</label>
+                                <input className={"inputTime"} type={"time"}></input>
+                            </div>
                         </div>
-                    </div>
-                    <div className={"tagsDiv"}>
-                        <div className='searchDiv'>
-                            <input className='searchTag nameInputs'></input>
-                            <span>
+                        <div className={"tagsDiv"}>
+                            <div className='searchDiv'>
+                                <input className='searchTag nameInputs'></input>
+                                <span>
                                 <svg width="24" height="20" viewBox="0 0 18 18" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -74,23 +75,65 @@ function TestCreation() {
                                         fill="#717070"/>
                                 </svg>
                             </span>
+                            </div>
+                            <div>
+                                Tags
+                            </div>
+                            <button onClick={() => {
+                                setIsOpenedTagCreation(true)
+                            }} className={"createNewTag testCreationBtn"}>+ Create new tag
+                            </button>
                         </div>
-                        <div>
-                            Tags
-                        </div>
-                        <button className={"createNewTag"}>+ Create new tag</button>
-                    </div>
-                    <button className={"buttonConfirm nextBtn"}>
-                        <label>Next </label>
-                        <svg width="24" height="18" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M0.916687 10.4165H20.3125L12 2.104L13.045 0.916504L23.3367 11.2082L13.045 21.4998L12 20.3123L20.3125 11.9998H0.916687V10.4165Z"
-                                fill="#FFFEFE" stroke="#FFFEFE" stroke-width="0.8"/>
-                        </svg>
+                        <button onClick={() => {
+                            setIsOpenedSecondPage(true)
+                        }} className={"nextBtn"}>
+                            <label>Next </label>
+                            <svg width="24" height="18" viewBox="0 0 24 23" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.916687 10.4165H20.3125L12 2.104L13.045 0.916504L23.3367 11.2082L13.045 21.4998L12 20.3123L20.3125 11.9998H0.916687V10.4165Z"
+                                    fill="#FFFEFE" stroke="#FFFEFE" stroke-width="0.8"/>
+                            </svg>
 
-                    </button>
-                </div>
+                        </button>
+                    </div>}
+                {isOpenedSecondPage &&
+                    <div className={"secondCreationDiv"}>
+                        <div className={"confirmCreationDiv"}>
+                            <button onClick={()=>{setIsOpenedSecondPage(false)}} className={"btnConfirmNewTag btnSaveCreation testCreationBtn btnBackToFirst"}>
+                                <svg width="30" height="20" viewBox="0 0 20 22" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M23.0833 12.5835L3.68742 12.5835L11.9999 20.896L10.9549 22.0835L0.663252 11.7918L10.9549 1.50016L11.9999 2.68766L3.68742 11.0002L23.0833 11.0002V12.5835Z"
+                                        fill="#FFFEFE" stroke="#FFFEFE" stroke-width="0.8"/>
+                                </svg>
+                                <label> Back</label>
+                            </button>
+                            <button className={"buttonConfirm btnSaveCreation"}>
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                }
             </div>
+            {isOpenedTagCreation && <div className={"newTagDiv"}>
+                <div className={"innerNewTagDiv"}>
+                    <div onClick={() => {
+                        setIsOpenedTagCreation(false)
+                    }} className={"createTagBtnClose"}>
+                        <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 19L19 1L1 19ZM1 1L19 19L1 1Z" fill="#717070"/>
+                            <path d="M1 19L19 1M1 1L19 19" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <label className={"createTagLabelBig"}>Create a New Tag</label>
+                    <label className={"createTagLabelSmall"}>Tag Name</label>
+                    <input placeholder={"Tag Name"} className={"createTagInput"}></input>
+                    <label className={"createTagLabelSmall"}>Tag Description</label>
+                    <input placeholder={"Tag Description"} className={"createTagInput"}></input>
+                    <button className={"testCreationBtn btnConfirmNewTag"}>Confirm</button>
+                </div>
+            </div>}
         </div>
     )
 }
