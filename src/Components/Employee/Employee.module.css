@@ -1,0 +1,77 @@
+.mainDiv{
+    height: 83px;
+    width: 1345px;
+    border-radius: 28px;
+    border: rgb(148, 148, 148) 3px solid;
+    background: #FFFEFE;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-around;
+}
+
+.mainDivName{
+    color: #4942E4;
+    font-size: 24px;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    word-wrap: break-word;
+    cursor: pointer;
+    width: 30%;
+    text-align: center;
+    /*background: #8696FE;*/
+}
+
+.mainDivRole{
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    width:12%;
+    /*background: #4942E4;*/
+}
+
+.mainDivRoleBackground{
+    background: #4C0E97;
+    padding: 3px 20px 3px 20px;
+    border-radius: 14px;
+}
+
+.mainDivRoleText{
+    color: #FFFEFE;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.mainDivEmail{
+    color: #1E1E1E;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width:25%;
+    /*background: aqua;*/
+    text-align: center;
+}
+
+.mainDivPhone{
+    color: #1E1E1E;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width:15%;
+    /*background: green;*/
+    text-align: center;
+}
+
+.mainDivSvg{
+    width:118px;
+    height:22px;
+    /*background: #4C0E97;*/
+}

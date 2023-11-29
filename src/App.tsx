@@ -10,6 +10,7 @@ import Registration from "./Pages/Registration/Registration";
 import Login from "./Pages/Login/Login";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import UserProfile from './Pages/UserProfile/UserProfile'
+import CompanyProfile from "./Pages/CompanyProfile/CompanyProfile";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/user_profile" element={<UserProfile />}/>
             <Route path="/forgot_password" element={<ResetPassword/>}/>
             <Route path="/forgot_password/reset/" element={<ResetPasswordContinue/>}/>
+            <Route path="/company_profile/:id" element={<CompanyProfile/>}/>
         </Routes>
     );
 }
