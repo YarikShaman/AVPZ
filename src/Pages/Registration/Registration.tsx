@@ -1,8 +1,9 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {CheckPassword} from "../../Utilities/CheckPassword";
 import "./Registration.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
+import { SaveJWT } from "../../Utilities/SaveJWT";
 
 function Registration() {
     const [companyName, setCompanyName] = useState("");
@@ -67,6 +68,10 @@ function Registration() {
             }
         });
     }
+    useEffect(() => {
+            if(SaveJWT()!="error")
+                    nav("/")
+    },[])
 
     return (
         <div>

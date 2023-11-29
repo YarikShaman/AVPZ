@@ -10,7 +10,6 @@
 }
 
 .profileDiv{
-    height: 730px;
     width: 676px;
     border: 1px rgb(207, 204, 204) solid;
     display: flex;
@@ -92,4 +91,10 @@
 
 .profileDivSettingsDivSvg{
     cursor: pointer;
+}
+.profileDivTableCompanies{
+    padding-top: 18px;
+    color:black;
+    border:1px solid black;
+    text-align: center;
 }

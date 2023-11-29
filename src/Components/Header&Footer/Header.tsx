@@ -32,7 +32,7 @@ function Header() {
     useEffect(() => {
         if (name === "") {
             getName()
-            if(!SaveJWT())
+            if(SaveJWT()=="error")
             if (!exclusion.includes(location.pathname)) {
                 nav("/")
             }

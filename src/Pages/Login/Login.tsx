@@ -1,7 +1,8 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import "../Registration/Registration.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import { SaveJWT } from "../../Utilities/SaveJWT";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -41,6 +42,10 @@ function Login() {
             }
         });
     }
+    useEffect(() => {
+        if(SaveJWT()!="error")
+            nav("/")
+    },[])
 
     return (
             <div className={"login"}>

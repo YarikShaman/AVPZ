@@ -39,7 +39,7 @@ function ResetPassword() {
     }
 
     return (
-        <div>
+        <div style={{minHeight:"417px"}}>
             <div className={"nameReset"}>
                 <label>Reset Your Password</label>
             </div>

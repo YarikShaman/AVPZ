@@ -16,6 +16,7 @@ export default function UserProfile() {
         ).then(
             resp => {
                 setData(resp.data);
+                console.log(resp.data)
             }
         ).catch(err => {
             switch (err) {
@@ -55,11 +56,21 @@ export default function UserProfile() {
                     </tr>
                     <tr>
                         <td>Company name</td>
-                        <td>{data?.companies.length !== 0 ? data?.companies?.map(company => {
-                                return company.name + '\n'
-                            })
-                            : "no companies"
-                        }</td>
+                        <td>{data?.companies.length !== 0 ? (
+                            <table>
+                                <tbody>
+                                {data?.companies.map((company, index) => (
+                                    <tr key={index}>
+                                        <td className={`${styles.profileDivTableCompanies}`}>{company.title}</td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+                        ) : (
+                            <tr>
+                                <td colSpan={1}>No companies</td>
+                            </tr>
+                        )}</td>
                     </tr>
                     <tr>
                         <td>Position</td>
@@ -69,7 +80,7 @@ export default function UserProfile() {
                 <div className={styles.profileDivSettings}>
                     <div className={`${styles.profileDivSettingsTitle}`}>Settings</div>
                     <div className={styles.profileDivSettingsDiv}>
-                        <div className={styles.profileDivSettingsDivButton}  onClick={()=>{nav('/forgot_password')}}>Reset Password</div>
+                        <div className={styles.profileDivSettingsDivButton}  onClick={()=>{nav('/forgot_password/reset/')}}>Reset Password</div>
                         <div className={styles.profileDivSettingsDivLine}></div>
                         <div className={styles.profileDivSettingsDivButton}  onClick={()=>{nav('/user_profile/edit')}}>Edit Profile</div>
                         <div className={styles.profileDivSettingsDivLine}></div>
