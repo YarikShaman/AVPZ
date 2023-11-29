@@ -5,6 +5,7 @@ import "../ResetPassword/ResetPassword.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
 import {SaveJWT} from "../../Utilities/SaveJWT";
+import QuestionInTestCreate from "../../Components/QuestionInTestCreate/QuestionInTestCreate";
 
 function TestCreation() {
     const [isOpenedTagCreation, setIsOpenedTagCreation] = useState(false);
@@ -99,6 +100,7 @@ function TestCreation() {
                     </div>}
                 {isOpenedSecondPage &&
                     <div className={"secondCreationDiv"}>
+                        <QuestionInTestCreate/>
                         <div className={"confirmCreationDiv"}>
                             <button onClick={()=>{setIsOpenedSecondPage(false)}} className={"btnConfirmNewTag btnSaveCreation testCreationBtn btnBackToFirst"}>
                                 <svg width="30" height="20" viewBox="0 0 20 22" fill="none"

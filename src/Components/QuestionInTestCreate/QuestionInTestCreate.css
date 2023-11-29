@@ -1,0 +1,61 @@
+.questionCreationDiv{
+    width: 658px;
+    padding: 26px 70px;
+    border: 1px solid #9895D1;
+    border-radius: 30px;
+    background: #E4E2FE;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+.addOptionBtn{
+    background: black;
+    color: white;
+    border: none;
+    min-width: 160px;
+    padding: 8px 17px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.questionName{
+    font-size: 24px;
+    width: 100%;
+    font-weight: 500;
+    padding:0 5px ;
+    color: #717070;
+    border-bottom: 2px solid #717070;
+    margin-bottom: 20px;
+}
+.optionsDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 10px 0;
+}
+.optionDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    padding: 5px 0;
+    width: 100%;
+}
+.questionOptionInput{
+    width: 440px;
+    margin: 0 10px ;
+    font-size: 20px;
+    color: #717070;
+    border-bottom: 2px solid #717070;
+}
+.correctLabel{
+    font-size: 16px;
+    width: 120px;
+}
+.questionCheckbox{
+    width: 16px;
+    height: 16px;
+}

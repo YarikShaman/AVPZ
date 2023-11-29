@@ -95,6 +95,7 @@ function Login() {
                                 className={"input password"}
                                 onChange={(e) => {
                                     setPassword(e.target.value)
+                                    setErrorPassword("")
                                 }}
                                 value={password}
                                 placeholder={"Password"}
