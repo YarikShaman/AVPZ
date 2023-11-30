@@ -8,6 +8,7 @@
     flex-direction: column;
     align-items: start;
     justify-content: center;
+    margin-bottom: 20px;
 }
 .addOptionBtn{
     background: black;
@@ -19,12 +20,14 @@
     font-size: 20px;
     cursor: pointer;
 }
+.addOptionBtn:hover{
+    background: #858484;
+}
 .questionName{
     font-size: 24px;
     width: 100%;
     font-weight: 500;
     padding:0 5px ;
-    color: #717070;
     border-bottom: 2px solid #717070;
     margin-bottom: 20px;
 }
@@ -48,7 +51,6 @@
     width: 440px;
     margin: 0 10px ;
     font-size: 20px;
-    color: #717070;
     border-bottom: 2px solid #717070;
 }
 .correctLabel{
@@ -58,4 +60,14 @@
 .questionCheckbox{
     width: 16px;
     height: 16px;
+}
+.deleteSvg{
+    transform: translateX(690px) translateY(-10px);
+    cursor: pointer;
+}
+.questionTypeSelect{
+    font-size: 20px;
+    border-radius: 15px;
+    border: 1px solid #9895D1;
+    padding: 6px 16px;
 }

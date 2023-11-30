@@ -6,12 +6,30 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom"
 import {SaveJWT} from "../../Utilities/SaveJWT";
 import QuestionInTestCreate from "../../Components/QuestionInTestCreate/QuestionInTestCreate";
-
+interface Option{
+    value:string,
+    isAnswer:boolean,
+    index:number,
+}
 function TestCreation() {
+    const nav = useNavigate()
     const [isOpenedTagCreation, setIsOpenedTagCreation] = useState(false);
     const [isOpenedSecondPage, setIsOpenedSecondPage] = useState(false);
     const [errorServer, setErrorServer] = useState('');
-    const nav = useNavigate()
+    const [elements, setElements] =useState<number[]>([0]);
+
+    const handleAddElement = () => {
+        setElements((elements)=>[...elements,elements.length+1]);
+        console.log(elements)
+    };
+    const handleRemoveElement = (index:number) => {
+        console.log(index)
+        setElements((elements) => {
+            const updatedElements = [...elements];
+            updatedElements.splice(elements.indexOf(index), 1);
+            return updatedElements;
+        });
+    };
 
     function CreationConfirming() {
         setErrorServer("");
@@ -35,7 +53,7 @@ function TestCreation() {
                 <div className={"stepsDiv"}>
                     <div className={"stepsLabel"}>Steps:</div>
                     <div className={`stepsNum ${isOpenedSecondPage ? 'stepsNum1' : 'stepsNum2'}`}>1</div>
-                    <div className={"stepsLabe l"}>Test Setup</div>
+                    <div className={"stepsLabel"}>Test Setup</div>
                     <div className={`stepsNum ${isOpenedSecondPage ? 'stepsNum2' : 'stepsNum1'}`}>2</div>
                     <div className={"stepsLabel"}>Creating Questions</div>
                 </div>
@@ -100,7 +118,13 @@ function TestCreation() {
                     </div>}
                 {isOpenedSecondPage &&
                     <div className={"secondCreationDiv"}>
-                        <QuestionInTestCreate/>
+                        {elements.map(( index) => (
+                            <QuestionInTestCreate removeQuestion={() => handleRemoveElement(index)} index={index}
+                                                  key={index} changeOption={function (arg0: Option[]): void {
+                                throw new Error("Function not implemented.");
+                            }} />
+                        ))}
+                        <button onClick={()=>{handleAddElement()}} className={"addQuestionBtn"}>+ Add question</button>
                         <div className={"confirmCreationDiv"}>
                             <button onClick={()=>{setIsOpenedSecondPage(false)}} className={"btnConfirmNewTag btnSaveCreation testCreationBtn btnBackToFirst"}>
                                 <svg width="30" height="20" viewBox="0 0 20 22" fill="none"

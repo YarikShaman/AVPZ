@@ -244,6 +244,23 @@
 .testCreationBtn:hover{
     background: #858484;
 }
+.addQuestionBtn{
+    background: #44E3A0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    min-width: 160px;
+    padding: 16px 34px;
+    border-radius: 15px;
+    font-size: 26px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.addQuestionBtn:hover{
+    background: black;
+    color: white;
+}
 .nextBtn{
     width: 200px;
     margin-top: 30px;
@@ -263,6 +280,12 @@
     display: flex;
     justify-content: space-between;
     width:600px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+.secondCreationDiv{
 }
 .btnSaveCreation{
     margin-top: 30px;
