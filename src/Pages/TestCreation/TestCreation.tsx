@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../Registration/Registration.css"
 import "./TestCreation.css"
 import "../ResetPassword/ResetPassword.css"
@@ -6,30 +6,94 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom"
 import {SaveJWT} from "../../Utilities/SaveJWT";
 import QuestionInTestCreate from "../../Components/QuestionInTestCreate/QuestionInTestCreate";
-interface Option{
-    value:string,
-    isAnswer:boolean,
-    index:number,
+
+interface Option {
+    title: string,
+    is_correct: boolean,
+    index: number,
 }
+
+interface Question {
+    title: string,
+    answers: Option[],
+    type: string,
+    index: number,
+}
+
+interface Request {
+    title: string,
+    description: string,
+    completion_time: number,
+    start_date: string,
+    start_time: string,
+    end_date: string,
+    end_time: string,
+    company_id: string,
+    tags: {id:string,title:string}[],
+    questions: Question[]
+}
+
 function TestCreation() {
     const nav = useNavigate()
+    const [testName, setTestName] = useState("");
+    const [testDescription, setTestDescription] = useState("");
+    const [testComplTime, setTestComplTime] = useState("");
+    const [testStartTime, setTestStartTime] = useState("");
+    const [testStartDate, setTestStartDate] = useState("");
+    const [testEndTime, setTestEndTime] = useState("");
+    const [testEndDate, setTestEndDate] = useState("");
+    const [testCompany, setTestCompany] = useState("");
+    const [companyTags, setCompanyTags] = useState<{id:string,title:string}[]>([]);
+    const [testTags, setTestTags] = useState<{id:string,title:string}[]>([]);
     const [isOpenedTagCreation, setIsOpenedTagCreation] = useState(false);
     const [isOpenedSecondPage, setIsOpenedSecondPage] = useState(false);
     const [errorServer, setErrorServer] = useState('');
-    const [elements, setElements] =useState<number[]>([0]);
+    const [data, setData] = useState<Question[]>([{
+        title: "",
+        answers: [],
+        type: "single",
+        index: 0
+    }]);
 
-    const handleAddElement = () => {
-        setElements((elements)=>[...elements,elements.length+1]);
-        console.log(elements)
+    const handleQuestionDataChange = (updatedQuestion: Question) => {
+        const index = updatedQuestion.index;
+        const updatedData = [...data];
+        updatedData[index] = updatedQuestion;
+        setData(updatedData);
     };
-    const handleRemoveElement = (index:number) => {
-        console.log(index)
-        setElements((elements) => {
-            const updatedElements = [...elements];
-            updatedElements.splice(elements.indexOf(index), 1);
-            return updatedElements;
+    const handleRemoveElement = () => {
+        setData((prevData) => {
+            const updatedData = prevData.filter((option) => option.index !== prevData.length - 1);
+            return updatedData;
         });
     };
+
+    const handleAddElement = () => {
+        const newIndex = data.length;
+        const newQuestion: Question = {
+            title: "",
+            answers: [],
+            type: "single",
+            index: newIndex
+        };
+        setData((prevData) => [...prevData, newQuestion]);
+    };
+
+    const handleSaveTest = () => {
+        let request: Request = {
+            title: testName,
+            description: testDescription,
+            completion_time: Number(testComplTime),
+            start_date: testStartDate,
+            start_time: testStartTime,
+            end_date: testEndDate,
+            end_time: testEndTime,
+            company_id: testCompany,
+            tags: testTags,
+            questions: data
+        }
+        console.log(request)
+    }
 
     function CreationConfirming() {
         setErrorServer("");
@@ -37,6 +101,60 @@ function TestCreation() {
 
         nav("../companies");
     }
+    async function GetData(jwt: string | null) {
+        try {
+            const resp = await axios.get(
+                "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/profile/",
+                { headers: { Authorization: "Bearer " + jwt } }
+            );
+            return resp.data.companies;
+        } catch (err) {
+            switch (err) {
+                case 401:
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    break;
+            }
+        }
+    }
+    async function GetTags(jwt: string | null) {
+        try {
+            const resp = await axios.get(
+                "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/companies/"+testCompany+"/tags",
+                { headers: { Authorization: "Bearer " + jwt } }
+            );
+            return resp.data;
+        } catch (err) {
+            switch (err) {
+            }
+        }
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const companies = await GetData(SaveJWT());
+            const companiesData = companies.map((company: { id: any; title: any; }) => ({ value: company.id, label: company.title }));
+            const selectElement = document.getElementById("companySelect");
+            if(selectElement)
+            companiesData.forEach((company: { value: string; label: string | null; }) => {
+                const optionElement = document.createElement("option");
+                optionElement.value = company.value;
+                optionElement.textContent = company.label;
+                selectElement.appendChild(optionElement);
+            });
+        };
+
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const tags = await GetTags(SaveJWT());
+            setCompanyTags(tags)
+            console.log(tags)
+        };
+        fetchData();
+    }, [testCompany]);
 
     return (
         <div>
@@ -60,48 +178,44 @@ function TestCreation() {
                 {!isOpenedSecondPage &&
                     <div className={"firstCreationDiv"}>
                         <div className={"testNameDiv"}>
-                            <input className={"nameInput nameInputs"} placeholder={"Type Test Name"}>
-
-                            </input>
-                            <input className={"descInput nameInputs"} placeholder={"Type Test Description"}>
-
-                            </input>
+                            <input value={testName} onChange={(e) => {
+                                setTestName(e.target.value)
+                            }} className={"nameInput nameInputs"} placeholder={"Type Test Name"}/>
+                            <input value={testDescription} onChange={(e) => {
+                                setTestDescription(e.target.value)
+                            }} className={"descInput nameInputs"} placeholder={"Type Test Description"}/>
                         </div>
                         <div className={"timeDiv"}>
                             <div className={"timeLimitDiv"}>
                                 <label className={"timeLimitLabel"}>Time Limit</label>
-                                <input className={"inputTime"} type={"time"}></input>
+                                <input value={testComplTime} onChange={(e) => {
+                                    setTestComplTime(e.target.value)
+                                }} className={"inputTime"} type={"time"}></input>
                             </div>
                             <div className={"dateLimitDiv"}>
                                 <label>Start Date</label>
-                                <input className={"inputDate"} type={"date"}></input>
+                                <input value={testStartDate} onChange={(e) => {
+                                    setTestStartDate(e.target.value)
+                                }} className={"inputDate"} type={"date"}></input>
                                 <label>Start Time</label>
-                                <input className={"inputTime"} type={"time"}></input>
+                                <input value={testStartTime} onChange={(e) => {
+                                    setTestStartTime(e.target.value)
+                                }} className={"inputTime"} type={"time"}></input>
                                 <label>End Date</label>
-                                <input className={"inputDate"} type={"date"}></input>
+                                <input value={testEndDate} onChange={(e) => {
+                                    setTestEndDate(e.target.value)
+                                }} className={"inputDate"} type={"date"}></input>
                                 <label>End Time</label>
-                                <input className={"inputTime"} type={"time"}></input>
+                                <input value={testEndTime} onChange={(e) => {
+                                    setTestEndTime(e.target.value)
+                                }} className={"inputTime"} type={"time"}></input>
                             </div>
                         </div>
                         <div className={"tagsDiv"}>
-                            <div className='searchDiv'>
-                                <input className='searchTag nameInputs'></input>
-                                <span>
-                                <svg width="24" height="20" viewBox="0 0 18 18" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M16.485 17.154L10.223 10.892C9.72298 11.318 9.14798 11.6477 8.49798 11.881C7.84798 12.1144 7.19465 12.231 6.53798 12.231C4.93665 12.231 3.58132 11.6767 2.47198 10.568C1.36265 9.45871 0.807983 8.10371 0.807983 6.50304C0.807983 4.90238 1.36198 3.54671 2.46998 2.43604C3.57865 1.32471 4.93332 0.769043 6.53398 0.769043C8.13532 0.769043 9.49132 1.32371 10.602 2.43304C11.7127 3.54238 12.268 4.89804 12.268 6.50004C12.268 7.19471 12.145 7.86704 11.899 8.51704C11.6523 9.16704 11.329 9.72304 10.929 10.185L17.191 16.446L16.484 17.154H16.485ZM6.53798 11.23C7.86465 11.23 8.98498 10.7734 9.89898 9.86004C10.8123 8.94671 11.269 7.82638 11.269 6.49904C11.269 5.17238 10.8123 4.05238 9.89898 3.13904C8.98565 2.22571 7.86565 1.76904 6.53898 1.76904C5.21232 1.76904 4.09198 2.22571 3.17798 3.13904C2.26465 4.05238 1.80798 5.17238 1.80798 6.49904C1.80798 7.82571 2.26465 8.94571 3.17798 9.85904C4.09132 10.7724 5.21132 11.23 6.53798 11.23Z"
-                                        fill="#717070"/>
-                                </svg>
-                            </span>
-                            </div>
+                            <select onChange={(e)=>{setTestCompany(e.target.value)}} id={"companySelect"}/>
+                            <label>Tags Chosen: </label>
                             <div>
-                                Tags
                             </div>
-                            <button onClick={() => {
-                                setIsOpenedTagCreation(true)
-                            }} className={"createNewTag testCreationBtn"}>+ Create new tag
-                            </button>
                         </div>
                         <button onClick={() => {
                             setIsOpenedSecondPage(true)
@@ -118,15 +232,19 @@ function TestCreation() {
                     </div>}
                 {isOpenedSecondPage &&
                     <div className={"secondCreationDiv"}>
-                        {elements.map(( index) => (
-                            <QuestionInTestCreate removeQuestion={() => handleRemoveElement(index)} index={index}
-                                                  key={index} changeOption={function (arg0: Option[]): void {
-                                throw new Error("Function not implemented.");
-                            }} />
+                        {data.map((question) => (
+                            <QuestionInTestCreate isLast={data.length - 1 == question.index}
+                                                  removeQuestion={() => handleRemoveElement()} index={question.index}
+                                                  key={question.index} changeOption={handleQuestionDataChange}/>
                         ))}
-                        <button onClick={()=>{handleAddElement()}} className={"addQuestionBtn"}>+ Add question</button>
+                        <button onClick={() => {
+                            handleAddElement()
+                        }} className={"addQuestionBtn"}>+ Add question
+                        </button>
                         <div className={"confirmCreationDiv"}>
-                            <button onClick={()=>{setIsOpenedSecondPage(false)}} className={"btnConfirmNewTag btnSaveCreation testCreationBtn btnBackToFirst"}>
+                            <button onClick={() => {
+                                setIsOpenedSecondPage(false)
+                            }} className={"btnConfirmNewTag btnSaveCreation testCreationBtn btnBackToFirst"}>
                                 <svg width="30" height="20" viewBox="0 0 20 22" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -135,12 +253,39 @@ function TestCreation() {
                                 </svg>
                                 <label> Back</label>
                             </button>
-                            <button className={"buttonConfirm btnSaveCreation"}>
+                            <button onClick={handleSaveTest} className={"buttonConfirm btnSaveCreation"}>
                                 Save
                             </button>
                         </div>
                     </div>
                 }
+            </div>
+            <div className={"tagsChoiceDiv"}>
+                <div className={"tagsCreationDiv"}>
+                    <label>Chose a Tag:</label>
+                    <button onClick={() => {
+                        setIsOpenedTagCreation(true)
+                    }} className={"createNewTag testCreationBtn"}>+ Create new tag
+                    </button>
+                </div>
+                <div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {companyTags?.map(company => (
+                            <tr key={company.id}>
+                                <td>{company.id}</td>
+                                <td>{company.title}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
             {isOpenedTagCreation && <div className={"newTagDiv"}>
                 <div className={"innerNewTagDiv"}>

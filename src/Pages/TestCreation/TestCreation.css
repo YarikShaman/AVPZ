@@ -160,7 +160,6 @@
 }
 
 .createNewTag{
-    margin-top: 20px;
     background: black;
     color: white;
     font-size: 16px;
@@ -290,4 +289,25 @@
 .btnSaveCreation{
     margin-top: 30px;
     width: 200px;
+}
+.tagsChoiceDiv{
+    border-radius: 30px;
+    border: 1px solid #4C0E97;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 370px;
+    height: 555px;
+    transform: translateX(150px) translateY(-650px);
+}
+.tagsCreationDiv{
+    font-size: 24px;
+    width: 330px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+
 }

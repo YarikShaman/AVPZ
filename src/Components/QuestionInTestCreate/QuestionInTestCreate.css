@@ -71,3 +71,9 @@
     border: 1px solid #9895D1;
     padding: 6px 16px;
 }
+.deleteOption{
+    transform: translateX(660px);
+    cursor: pointer;
+    position: absolute;
+    z-index: 100;
+}
