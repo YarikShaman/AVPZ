@@ -6,6 +6,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom"
 import {SaveJWT} from "../../Utilities/SaveJWT";
 import QuestionInTestCreate from "../../Components/QuestionInTestCreate/QuestionInTestCreate";
+import TagCreation from "../../Components/TagCreation/TagCreation";
 
 interface Option {
     title: string,
@@ -134,6 +135,7 @@ function TestCreation() {
         const fetchData = async () => {
             const companies = await GetData(SaveJWT());
             const companiesData = companies.map((company: { id: any; title: any; }) => ({ value: company.id, label: company.title }));
+            setTestCompany(companies[0].id)
             const selectElement = document.getElementById("companySelect");
             if(selectElement)
             companiesData.forEach((company: { value: string; label: string | null; }) => {
@@ -145,6 +147,7 @@ function TestCreation() {
         };
 
         fetchData();
+
     }, []);
 
     useEffect(() => {
@@ -212,9 +215,16 @@ function TestCreation() {
                             </div>
                         </div>
                         <div className={"tagsDiv"}>
-                            <select onChange={(e)=>{setTestCompany(e.target.value)}} id={"companySelect"}/>
+                            <select value={testCompany} onChange={(e)=>{setTestCompany(e.target.value)}} id={"companySelect"}/>
                             <label>Tags Chosen: </label>
                             <div>
+                                {testTags?.map(tag => (
+                                    <tr key={tag.id}>
+                                        <td>{tag.id}</td>
+                                        <td>{tag.title}</td>
+                                        <td style={{cursor:"pointer"}} onClick={()=>{if(testTags.indexOf({id: tag.id, title: tag.title})==-1)setTestTags(tags=>[...tags,{id: tag.id, title: tag.title}]);}}>-</td>
+                                    </tr>
+                                ))}
                             </div>
                         </div>
                         <button onClick={() => {
@@ -273,38 +283,22 @@ function TestCreation() {
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Title</th>
+                            <th>Title</th>s
                         </tr>
                         </thead>
                         <tbody>
-                        {companyTags?.map(company => (
-                            <tr key={company.id}>
-                                <td>{company.id}</td>
-                                <td>{company.title}</td>
+                        {companyTags?.map(tag => (
+                            <tr key={tag.id}>
+                                <td>{tag.id}</td>
+                                <td>{tag.title}</td>
+                                <td style={{cursor:"pointer"}} onClick={()=>{if(testTags.indexOf({id: tag.id, title: tag.title})==-1)setTestTags(tags=>[...tags,{id: tag.id, title: tag.title}]);}}>+</td>
                             </tr>
                         ))}
                         </tbody>
                     </table>
                 </div>
             </div>
-            {isOpenedTagCreation && <div className={"newTagDiv"}>
-                <div className={"innerNewTagDiv"}>
-                    <div onClick={() => {
-                        setIsOpenedTagCreation(false)
-                    }} className={"createTagBtnClose"}>
-                        <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 19L19 1L1 19ZM1 1L19 19L1 1Z" fill="#717070"/>
-                            <path d="M1 19L19 1M1 1L19 19" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <label className={"createTagLabelBig"}>Create a New Tag</label>
-                    <label className={"createTagLabelSmall"}>Tag Name</label>
-                    <input placeholder={"Tag Name"} className={"createTagInput"}></input>
-                    <label className={"createTagLabelSmall"}>Tag Description</label>
-                    <input placeholder={"Tag Description"} className={"createTagInput"}></input>
-                    <button className={"testCreationBtn btnConfirmNewTag"}>Confirm</button>
-                </div>
-            </div>}
+            {isOpenedTagCreation && <TagCreation company={testCompany} setIsOpenedTagCreation={(res)=>setIsOpenedTagCreation(res)}/>}
         </div>
     )
 }

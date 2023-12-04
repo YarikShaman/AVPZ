@@ -26,7 +26,7 @@ export default function EditProfile() {
                 setData(resp.data);
             }
         ).catch(err => {
-            switch (err) {
+            switch (err.response.status) {
                 case 401:
                     localStorage.clear();
                     sessionStorage.clear();
