@@ -89,10 +89,9 @@
 
 .serverError {
     border: 1px solid red;
-    width: 20%;
     font-size: 18px;
     background: rgba(255, 0, 0, 0.1);
-    margin: auto;
+    margin-top: 20px;
 }
 
 @media (orientation: portrait) {

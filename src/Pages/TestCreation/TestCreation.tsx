@@ -13,7 +13,27 @@ interface Option {
     is_correct: boolean,
     index: number,
 }
-
+interface ConvertedRequest {
+    title: string;
+    description: string;
+    completion_time: number;
+    start_date: string;
+    start_time: string;
+    end_date: string;
+    end_time: string;
+    company_id: string;
+    tags: number[];
+    questions: ConvertedQuestion[];
+}
+interface ConvertedQuestion {
+    title: string;
+    type: string;
+    temp_uuid: string;
+    answers: {
+        title: string;
+        is_correct: boolean;
+    }[];
+}
 interface Question {
     title: string,
     answers: Option[],
@@ -30,7 +50,7 @@ interface Request {
     end_date: string,
     end_time: string,
     company_id: string,
-    tags: {id:string,title:string}[],
+    tags: { id: string, title: string }[],
     questions: Question[]
 }
 
@@ -44,8 +64,8 @@ function TestCreation() {
     const [testEndTime, setTestEndTime] = useState("");
     const [testEndDate, setTestEndDate] = useState("");
     const [testCompany, setTestCompany] = useState("");
-    const [companyTags, setCompanyTags] = useState<{id:string,title:string}[]>([]);
-    const [testTags, setTestTags] = useState<{id:string,title:string}[]>([]);
+    const [companyTags, setCompanyTags] = useState<{ id: string, title: string }[]>([]);
+    const [testTags, setTestTags] = useState<{ id: string, title: string }[]>([]);
     const [isOpenedTagCreation, setIsOpenedTagCreation] = useState(false);
     const [isOpenedSecondPage, setIsOpenedSecondPage] = useState(false);
     const [errorServer, setErrorServer] = useState('');
@@ -55,7 +75,9 @@ function TestCreation() {
         type: "single",
         index: 0
     }]);
-
+    const isTagAlreadyAdded = (tagToAdd: { id: string; title: string; }) => {
+        return testTags.findIndex(tag => tag.id === tagToAdd.id && tag.title === tagToAdd.title) === -1;
+    };
     const handleQuestionDataChange = (updatedQuestion: Question) => {
         const index = updatedQuestion.index;
         const updatedData = [...data];
@@ -81,10 +103,13 @@ function TestCreation() {
     };
 
     const handleSaveTest = () => {
+        setErrorServer("")
+        const [hours, minutes] = testComplTime.split(':').map(Number);
+        const complTime = hours * 60 + minutes;
         let request: Request = {
             title: testName,
             description: testDescription,
-            completion_time: Number(testComplTime),
+            completion_time: complTime,
             start_date: testStartDate,
             start_time: testStartTime,
             end_date: testEndDate,
@@ -93,20 +118,25 @@ function TestCreation() {
             tags: testTags,
             questions: data
         }
-        console.log(request)
+        const newRequest = convertRequest(request);
+        axios.post(
+            "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/quizzes/create",
+            newRequest,
+            {headers: {Authorization: "Bearer " + SaveJWT()}}
+        ).catch((err)=>{
+            console.log(err)
+            switch (err.response.status){
+                case 400:
+                    setErrorServer(err.response.data.detail.message)
+            }
+        });
     }
 
-    function CreationConfirming() {
-        setErrorServer("");
-        let jwt = SaveJWT();
-
-        nav("../companies");
-    }
     async function GetData(jwt: string | null) {
         try {
             const resp = await axios.get(
                 "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/profile/",
-                { headers: { Authorization: "Bearer " + jwt } }
+                {headers: {Authorization: "Bearer " + jwt}}
             );
             return resp.data.companies;
         } catch (err) {
@@ -118,11 +148,12 @@ function TestCreation() {
             }
         }
     }
+
     async function GetTags(jwt: string | null) {
         try {
             const resp = await axios.get(
-                "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/companies/"+testCompany+"/tags",
-                { headers: { Authorization: "Bearer " + jwt } }
+                "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/companies/" + testCompany + "/tags",
+                {headers: {Authorization: "Bearer " + jwt}}
             );
             return resp.data;
         } catch (err) {
@@ -130,25 +161,57 @@ function TestCreation() {
             }
         }
     }
+    function convertRequest(request: Request): ConvertedRequest {
+        const convertedQuestions: ConvertedQuestion[] = request.questions.map((q) => ({
+            title: q.title,
+            type: q.type,
+            temp_uuid: ("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee"+q.index.toString()),
+            answers: q.answers.map((a) => ({
+                title: a.title,
+                is_correct: a.is_correct,
+            })),
+        }));
 
+        const convertedRequest: ConvertedRequest = {
+            title: request.title,
+            description: request.description,
+            completion_time: request.completion_time,
+            start_date: convertDateFormat(request.start_date),
+            start_time: request.start_time,
+            end_date: convertDateFormat(request.end_date),
+            end_time: request.end_time,
+            company_id: request.company_id,
+            tags: request.tags.map((tag) => parseInt(tag.id)),
+            questions: convertedQuestions,
+        };
+
+        return convertedRequest;
+    }
+    function convertDateFormat(inputDate: string) {
+        const [year, month, day] = inputDate.split('-');
+        return `${day}-${month}-${year}`;
+    }
     useEffect(() => {
         const fetchData = async () => {
             const companies = await GetData(SaveJWT());
-            const companiesData = companies.map((company: { id: any; title: any; }) => ({ value: company.id, label: company.title }));
+            const companiesData = companies.map((company: { id: any; title: any; }) => ({
+                value: company.id,
+                label: company.title
+            }));
             setTestCompany(companies[0].id)
             const selectElement = document.getElementById("companySelect");
-            if(selectElement)
-            companiesData.forEach((company: { value: string; label: string | null; }) => {
-                const optionElement = document.createElement("option");
-                optionElement.value = company.value;
-                optionElement.textContent = company.label;
-                selectElement.appendChild(optionElement);
-            });
+            if (selectElement)
+                companiesData.forEach((company: { value: string; label: string | null; }) => {
+                    const optionElement = document.createElement("option");
+                    optionElement.value = company.value;
+                    optionElement.textContent = company.label;
+                    selectElement.appendChild(optionElement);
+                });
         };
 
         fetchData();
 
-    }, []);
+    }, [isOpenedTagCreation]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -161,7 +224,7 @@ function TestCreation() {
 
     return (
         <div>
-            <div className={"testCreation"} style={{minHeight: 604,}}>
+            <div className={"testCreation"} style={{minHeight: 709}}>
                 <button className={"buttonBack"}>
                     <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 7L2.75 7L8 12.25L7.34 13L0.84 6.5L7.34 0L8 0.75L2.75 6L15 6V7Z" fill="black"/>
@@ -215,17 +278,18 @@ function TestCreation() {
                             </div>
                         </div>
                         <div className={"tagsDiv"}>
-                            <select value={testCompany} onChange={(e)=>{setTestCompany(e.target.value)}} id={"companySelect"}/>
+                            <select value={testCompany} onChange={(e) => {
+                                setTestCompany(e.target.value)
+                            }} id={"companySelect"}/>
                             <label>Tags Chosen: </label>
-                            <div>
+                            <div className={"testTagsList"}>
                                 {testTags?.map(tag => (
-                                    <tr key={tag.id}>
-                                        <td>{tag.id}</td>
-                                        <td>{tag.title}</td>
-                                        <td style={{cursor:"pointer"}} onClick={()=>{if(testTags.indexOf({id: tag.id, title: tag.title})==-1)setTestTags(tags=>[...tags,{id: tag.id, title: tag.title}]);}}>-</td>
-                                    </tr>
+                                    <div className={"testTagsDiv"}>
+                                        {tag.title}
+                                    </div>
                                 ))}
                             </div>
+                            <button style={{marginTop:25}} onClick={()=>{setTestTags([])}} className={"createNewTag testCreationBtn"}>Delete all tags</button>
                         </div>
                         <button onClick={() => {
                             setIsOpenedSecondPage(true)
@@ -251,6 +315,7 @@ function TestCreation() {
                             handleAddElement()
                         }} className={"addQuestionBtn"}>+ Add question
                         </button>
+                        {errorServer&&<div className="serverError">Error: {errorServer}</div>}
                         <div className={"confirmCreationDiv"}>
                             <button onClick={() => {
                                 setIsOpenedSecondPage(false)
@@ -269,7 +334,7 @@ function TestCreation() {
                         </div>
                     </div>
                 }
-            </div>
+            </div>{!isOpenedSecondPage &&
             <div className={"tagsChoiceDiv"}>
                 <div className={"tagsCreationDiv"}>
                     <label>Chose a Tag:</label>
@@ -278,27 +343,23 @@ function TestCreation() {
                     }} className={"createNewTag testCreationBtn"}>+ Create new tag
                     </button>
                 </div>
-                <div>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Title</th>s
-                        </tr>
-                        </thead>
+                <div className={"tagsTableDiv"}>
+                    <table className={"tagsTable"}>
                         <tbody>
                         {companyTags?.map(tag => (
-                            <tr key={tag.id}>
-                                <td>{tag.id}</td>
-                                <td>{tag.title}</td>
-                                <td style={{cursor:"pointer"}} onClick={()=>{if(testTags.indexOf({id: tag.id, title: tag.title})==-1)setTestTags(tags=>[...tags,{id: tag.id, title: tag.title}]);}}>+</td>
+                            <tr className={"tagsTr"} onClick={() => {
+                                if (isTagAlreadyAdded(tag)){
+                                    setTestTags(tags => [...tags, {id: tag.id, title: tag.title}]);
+                            }}} key={tag.id}>
+                                <td className={"tagsNameTd"}>{tag.title}</td>
                             </tr>
                         ))}
                         </tbody>
                     </table>
                 </div>
-            </div>
-            {isOpenedTagCreation && <TagCreation company={testCompany} setIsOpenedTagCreation={(res)=>setIsOpenedTagCreation(res)}/>}
+            </div>}
+            {isOpenedTagCreation &&
+                <TagCreation company={testCompany} setIsOpenedTagCreation={(res) => setIsOpenedTagCreation(res)}/>}
         </div>
     )
 }

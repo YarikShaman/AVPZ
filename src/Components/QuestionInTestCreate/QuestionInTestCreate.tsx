@@ -17,7 +17,7 @@ interface Question{
 }
 function QuestionInTestCreate(info:{removeQuestion: (arg0: number) => void;isLast:boolean; index:number,changeOption: (arg0:Question)=>void}) {
     let nav = useNavigate();
-    const [type,setType] = useState<string>("single");
+    const [type,setType] = useState<string>("single_choice");
     const [questionName,setQuestionName] = useState<string>("");
     const [data, setData] = useState<Option[]>([]);
 

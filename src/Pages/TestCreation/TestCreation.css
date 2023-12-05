@@ -296,9 +296,9 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    width: 370px;
-    height: 555px;
-    transform: translateX(150px) translateY(-650px);
+    width: 360px;
+    height: 617px;
+    transform: translateX(50px) translateY(-710px);
 }
 .tagsCreationDiv{
     font-size: 24px;
@@ -310,4 +310,36 @@
     justify-content: space-between;
     align-items: center;
 
+}
+.tagsTableDiv{
+    margin: 20px;
+    overflow-y: scroll;
+}
+.tagsTable{
+    width: 100%;
+ }
+.tagsTr {
+    text-align: center;
+    font-size: 32px;
+    cursor: pointer;
+}
+table, th, td {
+    border: 1px solid;
+}
+.testTagsList{
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    font-size: 24px;
+}
+.testTagsDiv{
+    flex: 1;
+    text-align: center;
+    min-width: max-content;
+    cursor: pointer;
+    margin: 2px;
+    border: 1px solid;
+    padding: 3px 10px;
+    background: #50F2AE;
+    border-radius: 10px;
 }

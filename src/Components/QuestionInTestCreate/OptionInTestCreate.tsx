@@ -17,6 +17,9 @@ function OptionInTestCreate(info: OptionType) {
     const [value,setValue] = useState<string>("");
     const [isAnswer,setIsAnswer] = useState<boolean>(false);
     const handleInputChange = (value: string, isAnswer: boolean) => {
+        if(info.type=="open_answer"){
+            setIsAnswer(true)
+        }
         const newData = {
             title: value,
             is_correct: isAnswer,
