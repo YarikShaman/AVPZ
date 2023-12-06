@@ -198,7 +198,8 @@ function TestCreation() {
                 value: company.id,
                 label: company.title
             }));
-            setTestCompany(companies[0].id)
+            setTestTags([]);
+            setTestCompany(companies[0].id);
             const selectElement = document.getElementById("companySelect");
             if (selectElement)
                 companiesData.forEach((company: { value: string; label: string | null; }) => {

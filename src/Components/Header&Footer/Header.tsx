@@ -25,6 +25,8 @@ function Header() {
                     localStorage.clear();
                     sessionStorage.clear();
                     break;
+                case 500:
+                    break;
             }
         })
     }
@@ -34,7 +36,7 @@ function Header() {
             getName()
             if(SaveJWT()=="error")
             if (!exclusion.includes(location.pathname)) {
-                nav("/")
+                console.log(exclusion.includes(location.pathname))
             }
         }
     },[])
