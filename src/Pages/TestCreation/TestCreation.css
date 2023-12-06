@@ -322,7 +322,7 @@
     font-size: 24px;
     cursor: pointer;
 }
-table, th, td {
+.tagsTable, .tagsNameTd {
     border: 1px solid;
 }
 .testTagsList{
