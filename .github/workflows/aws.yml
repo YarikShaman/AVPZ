@@ -20,7 +20,7 @@ jobs:
         username: ubuntu
         key: "${{ secrets.AMAZON_SSH }}"
         source: .
-        target: /home/ubuntu/code
+        target: /home/ubuntu/front
 
     - name: execute remote commands
       uses: appleboy/ssh-action@master
