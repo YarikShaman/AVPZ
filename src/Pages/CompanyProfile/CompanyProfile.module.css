@@ -1,0 +1,193 @@
+.mainBackground {
+    width: fit-content;
+    min-width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.titleDiv{
+    width: 1720px;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: rgba(73, 66, 228, 1);
+    align-items: center;
+}
+
+.titleDivText{
+    /*background: #50F2AE;*/
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+    /*justify-content: center;*/
+}
+
+.titleDivTextTitle{
+    color: #FFFEFE;
+    font-family: Open Sans;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.titleDivTextRole{
+    color: #C7B7DA;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.titleDivButton{
+    width: 291px;
+    height: 58px;
+    border-radius: 11px;
+    background: #FFFEFE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 60px;
+    cursor: pointer;
+}
+
+.titleDivButtonText{
+    color: #1E1E1E;
+    font-family: Open Sans;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.informationDiv{
+    width: 1350px;
+    /*background: #8696FE;*/
+    /*display: flex;*/
+    flex-direction: column;
+}
+
+.informationDivLabel{
+    color: #4942E4;
+    font-family: Open Sans;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 60px;
+}
+
+.informationDivTable{
+    margin-top: 10px;
+    width: 100%;
+}
+
+.informationDivTable td{
+    min-height: 50px;
+    padding-bottom: 18px;
+}
+
+.informationDivTable td:nth-child(1){
+    color: #1E1E1E;
+    font-family: Open Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    width: 369px;
+}
+
+.informationDivTable td:nth-child(2){
+    color: #1E1E1E;
+    font-family: Open Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.informationDivFilters{
+    width: 1350px;
+    height: 64px;
+    border-radius: 14px;
+    background: rgba(161, 161, 161, 1);
+    margin-top: 62px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.informationDivFiltersSearch{
+    width: 347px;
+    height: 40px;
+    margin-left: 36px;
+    background: #FFFEFE;
+    /*color: rgb(148, 148, 148);*/
+    border-radius: 14px;
+    border: rgb(161, 161, 161) 1px solid;
+    font-size: 16px;
+    font-family: "Open Sans";
+    font-weight: 400;
+    padding-left: 15px;
+    /*justify-content: center;*/
+}
+
+.informationDivThreads{
+    color: #000;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+     display: flex;
+    flex-direction: row;
+    height: 27px;
+    width: 1345px;
+    /*background: #4942E4;*/
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.informationDivThreadsName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.informationDivThreadsRole{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:12%;
+}
+
+.informationDivThreadsEmail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:25%;
+}
+
+.informationDivThreadsPhone{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:15%;
+}
+
+.informationDivThreadsEmpty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:118px;
+}
+
+.informationDivEmployees{
+    /*background: #50F2AE ;*/
+}
+
