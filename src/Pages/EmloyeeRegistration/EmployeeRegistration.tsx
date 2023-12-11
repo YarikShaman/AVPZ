@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {CheckPassword} from "../../Utilities/CheckPassword";
+import "./EmployeeRegistration.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
 import { SaveJWT } from "../../Utilities/SaveJWT";
@@ -11,7 +12,7 @@ function EmployeeRegistration() {
     const [email, setEmail] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("employee");
     const [company, setCompany] = useState(window.location.pathname.split("/")[2]);
     const [companyTags, setCompanyTags] = useState<{ id: string, title: string }[]>([]);
     const [userTags, setUserTags] = useState<{ id: string, title: string }[]>([]);
@@ -41,6 +42,14 @@ function EmployeeRegistration() {
         }
     }
     function EmployeeRegistrationConfirming() {
+        if (!RegExp("^[a-zA-Z]{2,20}$").test(fullName?.split(" ")[0]||"")) {
+            setErrorFullName("Incorrect First Name")
+            return;
+        } else setErrorFullName("")
+        if (!RegExp("^[a-zA-Z]{2,20}$").test(fullName?.split(" ")[1]||"")) {
+            setErrorFullName("Incorrect Last Name")
+            return;
+        } else setErrorFullName("")
         if(errorFullName!=""||errorEmail!=""||errorPassword1!=""||errorPassword2!=""||errorPhoneNumber!="") return;
         setErrorServer("");
         axios.post(`http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/companies/${company}/members/add/`, {
@@ -50,7 +59,7 @@ function EmployeeRegistration() {
             password: password1,
             role:role,
             tags:userTags.map((tag) => parseInt(tag.id))
-        }).then((e)=>nav("../login")).catch(err => {
+        },{headers: {Authorization: "Bearer " + SaveJWT()}}).then((e)=>nav("../login")).catch(err => {
             switch (err.response.status) {
                 case 400:
                     setErrorPassword1("Input password has incorrect format");
@@ -99,13 +108,9 @@ function EmployeeRegistration() {
                             className={"input"}
                             onChange={(e) => {
                                 setFullName(e.target.value)
-                                if (!RegExp("^[a-zA-Z]{2,20}$").test(e.target.value))
-                                    setErrorFullName("Incorrect First Name")
-                                else
-                                    setErrorFullName("")
                             }}
                             value={fullName}
-                            placeholder={"First name"}
+                            placeholder={"Full name"}
                             id="firstName"
                             name="firstName"
                             type="text"
@@ -260,12 +265,12 @@ function EmployeeRegistration() {
                         </div>
                         <div style={{color: "red"}}>{errorPassword2}</div>
                     </div>
-                    <select>
+                    <select value={role} onChange={(e)=>setRole(e.target.value)} className={"questionTypeSelect"}>
                         <option value={"employee"}>Employee</option>
                         <option value={"tester"}>Test creator</option>
                         <option value={"admin"}>Admin</option>
                     </select>
-                    <div className={"tagsDiv"}>
+                    <div className={"tagsDiv employeeTags"}>
                         <label>Tags Chosen: </label>
                         <div className={"testTagsList"}>
                             {userTags?.map(tag => (
@@ -280,12 +285,6 @@ function EmployeeRegistration() {
                         Confirm
                     </button>
                 </form>
-                <div className={"loginRedirect"}>
-                    <label>Do you have an account? </label>
-                    <a href={"/login"}>
-                        Log in
-                    </a>
-                </div>
             </div>
             <div className={"tagsChoiceDiv"}>
                 <div className={"tagsCreationDiv"}>

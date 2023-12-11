@@ -1,0 +1,7 @@
+.employeeTags{
+    margin-top: 20px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 270px;
+}

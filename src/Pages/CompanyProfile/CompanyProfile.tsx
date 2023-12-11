@@ -129,7 +129,7 @@ export default function CompanyProfile() {
                     </div>
                 </div>
                 <div className={styles.titleDivButton}>
-                    <div className={styles.titleDivButtonText}>
+                    <div onClick={()=>nav(`/companies/${id}/add_member/`)} className={styles.titleDivButtonText}>
                         +Add a New Employee
                     </div>
                 </div>
