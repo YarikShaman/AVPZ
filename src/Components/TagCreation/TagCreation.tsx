@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import { SaveJWT } from "../../Utilities/SaveJWT";
-export default function TagCreation(info:{company:string,setIsOpenedTagCreation:(arg0:boolean)=>void}){
+export default function TagCreation(info:{company:string|undefined,setIsOpenedTagCreation:(arg0:boolean)=>void}){
 
     const [tagName, setTagName] = useState("");
     const [tagDescription, setTagDescription] = useState("");

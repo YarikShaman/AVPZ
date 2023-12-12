@@ -3,6 +3,7 @@ import styles from './CompanyProfile.module.css'
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import Employee from "../../Components/Employee/Employee";
+import { SaveJWT } from "../../Utilities/SaveJWT";
 
 export default function CompanyProfile() {
 
@@ -55,7 +56,7 @@ export default function CompanyProfile() {
     const [userData, setUserData] = useState<userData>()
     const [filter, setFilter] = useState<string>("")
     const [lastChangeTime, setLastChangeTime] = useState(0);
-    const [editVisibility, setEditVisibility] = useState("hidden")
+    const [editVisibility, setEditVisibility] = useState<boolean>(false)
     const nav = useNavigate()
 
 
@@ -82,9 +83,8 @@ export default function CompanyProfile() {
         ).then(
             resp => {
                 setUserData(resp.data);
-                if (resp.data.companies[0]?.role=="owner" && resp.data.companies[0]?.role=="admin" && resp.data.companies[0]?.role=="test_maker") {
-                    setEditVisibility("visible")
-                    console.log("set_vis")
+                if (resp.data.companies[0]?.role=="owner" || resp.data.companies[0]?.role=="admin") {
+                    setEditVisibility(true)
                 }
             }
         ).catch(err => {
@@ -112,8 +112,10 @@ export default function CompanyProfile() {
     }, [filter, lastChangeTime]);
 
     useEffect(() => {
-        GetData(sessionStorage.getItem("jwt"));
-        GetCompanyData(sessionStorage.getItem("jwt"));
+        GetData(SaveJWT());
+        GetCompanyData(SaveJWT());
+
+        console.log(companyData)
     }, [])
 
 
@@ -185,22 +187,6 @@ export default function CompanyProfile() {
                     {
                         companyData?.users.map(user => {
                             return <>
-                                <Employee id={user.id} name={user.name} edit_visibility={editVisibility} email={user.email} role={user.role}
-                                          phone_number={user.phone_number}/>
-                                <Employee id={user.id} name={user.name} edit_visibility={editVisibility} email={user.email} role={user.role}
-                                          phone_number={user.phone_number}/>
-                                <Employee id={user.id} name={user.name} edit_visibility={editVisibility} email={user.email} role={user.role}
-                                          phone_number={user.phone_number}/>
-                                <Employee id={user.id} name={user.name} edit_visibility={editVisibility} email={user.email} role={user.role}
-                                          phone_number={user.phone_number}/>
-                                <Employee id={user.id} name={user.name} edit_visibility={editVisibility} email={user.email} role={user.role}
-                                          phone_number={user.phone_number}/>
-                                <Employee id={user.id} name={user.name} edit_visibility={editVisibility} email={user.email} role={user.role}
-                                          phone_number={user.phone_number}/>
-                                <Employee id={user.id} name={user.name} edit_visibility={editVisibility} email={user.email} role={user.role}
-                                          phone_number={user.phone_number}/>
-                                <Employee id={user.id} name={user.name} edit_visibility={editVisibility} email={user.email} role={user.role}
-                                          phone_number={user.phone_number}/>
                                 <Employee id={user.id} name={user.name} edit_visibility={editVisibility} email={user.email} role={user.role}
                                           phone_number={user.phone_number}/>
                             </>

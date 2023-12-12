@@ -14,7 +14,7 @@
 .mainDivName{
     color: #4942E4;
     font-size: 24px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', serif;
     font-weight: 400;
     word-wrap: break-word;
     cursor: pointer;
@@ -39,7 +39,7 @@
 
 .mainDivRoleText{
     color: #FFFEFE;
-    font-family: Open Sans;
+    font-family: Open Sans, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -48,7 +48,7 @@
 
 .mainDivEmail{
     color: #1E1E1E;
-    font-family: Open Sans;
+    font-family: Open Sans, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -60,7 +60,7 @@
 
 .mainDivPhone{
     color: #1E1E1E;
-    font-family: Open Sans;
+    font-family: Open Sans, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -73,5 +73,7 @@
 .mainDivSvg{
     width:118px;
     height:22px;
+    cursor: pointer;
+    margin-right:20px ;
     /*background: #4C0E97;*/
 }
