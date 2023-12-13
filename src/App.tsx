@@ -17,6 +17,7 @@ import TestCreation from './Pages/TestCreation/TestCreation';
 import CompanyProfile from "./Pages/CompanyProfile/CompanyProfile";
 import EmployeeRegistration from './Pages/EmloyeeRegistration/EmployeeRegistration';
 import EmployeeEdit from './Pages/EmployeeEdit/EmployeeEdit';
+import TestPassing from './Pages/TestPassing/TestPassing';
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/companies/create/" element={<CompanyRegistration />}/>
             <Route path="/companies/" element={<CompaniesList />}/>
             <Route path="/tests/create/" element={<TestCreation />}/>
+            <Route path="/tests/:id/" element={<TestPassing />}/>
         </Routes>
     );
 }

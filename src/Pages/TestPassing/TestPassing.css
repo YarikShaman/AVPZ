@@ -1,0 +1,63 @@
+.testPassDiv{
+    text-align: center;
+    min-height:594px ;
+}
+.testTitle{
+    font-size: 54px;
+}
+.testQuestionTitle{
+    font-size: 36px;
+}
+.btnStartTest{
+    margin-top: 70px;
+    background: black;
+    color: white;
+    border: none;
+    min-width: 160px;
+    padding: 16px 34px;
+    border-radius: 15px;
+    font-size: 26px;
+    cursor: pointer;
+}
+.btnStartTest:hover{
+    background: #858484;
+}
+.testPassTags{
+    font-size: 22px;
+    cursor: default;
+}
+.testPassTagsDiv{
+    margin-top: 30px;
+    width: 500px;
+    padding: 10px;
+}
+.timerDiv{
+    position: absolute;
+    right: 100px;
+    top:160px;
+    background: #D9D9D9;
+    border: 1px solid #9895D1;
+    color: #9895D1;
+    font-size: 28px;
+    width: 150px;
+    border-radius: 20px;
+}
+.timerSvg{
+    transform: translateY(2px);
+}
+.timerLabel{
+    color: black;
+    font-size: 40px;
+    transform: translateY(-5px);
+}
+.optionInPassingDiv{
+    font-size: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+.testNumberDiv{
+    font-size: 24px;
+    text-align: start;
+}
