@@ -19,7 +19,7 @@ function TestPassing() {
         ).then((res) => {
             setTest(res.data)
             setTime(res.data.completion_time*60)
-        });
+        }).catch((err)=>nav("/"));
         console.log(test)
     }
     const handleStartTest = () =>{
