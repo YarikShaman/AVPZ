@@ -16,6 +16,7 @@ function Login() {
     function LoginConfirming(
         email: string,
         password: string) {
+        console.log(errorEmail)
         if (errorEmail!="" || errorPassword!="") return
         axios.post("http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/auth/login/", {
             email: email,
@@ -31,10 +32,10 @@ function Login() {
                     setErrorPassword("Invalid password");
                     break;
                 case 404:
-                    setErrorEmail(err.response.detail);
+                    setErrorEmail(err.response.data.detail);
                     break;
                 case 422:
-                    setErrorServer(err.response.detail)
+                    setErrorServer(err.response.data.detail)
                     break;
                 case 500:
                     setErrorServer("Server is down, try later")
