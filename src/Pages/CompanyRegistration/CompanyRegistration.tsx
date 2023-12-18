@@ -18,6 +18,8 @@ function CompanyRegistration() {
             title: companyName
         }, {
             headers: {Authorization: "Bearer " + jwt}
+        }).then(()=>{
+            nav("../companies");
         }).catch(err => {
             switch (err.response.status) {
                 case 400:
@@ -34,7 +36,6 @@ function CompanyRegistration() {
                     break;
             }
         });
-        nav("../companies");
 }
 
 return (
