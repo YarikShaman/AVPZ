@@ -59,7 +59,7 @@ function EmployeeRegistration() {
             password: password1,
             role:role,
             tags:userTags.map((tag) => parseInt(tag.id))
-        },{headers: {Authorization: "Bearer " + SaveJWT()}}).then((e)=>nav(`companies/${company}`)).catch(err => {
+        },{headers: {Authorization: "Bearer " + SaveJWT()}}).then((e)=>nav(`../companies/${company}`)).catch(err => {
             switch (err.response.status) {
                 case 400:
                     setErrorPassword1("Input password has incorrect format");
