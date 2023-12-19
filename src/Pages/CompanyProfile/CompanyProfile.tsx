@@ -99,15 +99,6 @@ export default function CompanyProfile() {
 
 
     useEffect(() => {
-        // const delay = 2000;
-        // const currentTime = new Date().getTime();
-        //
-        // const timeElapsedSinceLastChange = currentTime - lastChangeTime;
-        //
-        // if (timeElapsedSinceLastChange >= delay) {
-        //     console.log("Performing action after 2 seconds:", filter);
-        //     GetCompanyData(sessionStorage.getItem("jwt"))
-        // }
         GetCompanyData(sessionStorage.getItem("jwt"))
     }, [filter, lastChangeTime]);
 

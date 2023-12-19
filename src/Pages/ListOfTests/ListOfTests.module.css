@@ -1,0 +1,59 @@
+.mainBackground{
+    width: fit-content;
+    min-width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.mainDiv{
+    /*background: #50F2AE;*/
+    display: flex;
+    /*align-items: center;*/
+    justify-content: start;
+    flex-direction: column;
+    width: 1376px;
+}
+
+.titleDiv{
+    color: #1E1E1E;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 40px;
+}
+
+.createDiv{
+    width: 250px;
+    height: 75px;
+    background: #1E1E1E;
+    border-radius: 28px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: end;
+    color: #FFFEFE;
+    cursor: pointer;
+}
+.createDiv:hover{
+    background: rgba(133, 132, 132, 1);
+}
+
+.createDivText{
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.testsDiv{
+    margin-top: 60px;
+}

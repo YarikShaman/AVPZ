@@ -14,6 +14,7 @@ import EditProfile from './Pages/EditProfile/EditProfile';
 import CompanyRegistration from './Pages/CompanyRegistration/CompanyRegistration';
 import CompaniesList from './Pages/CompaniesList/CompaniesList';
 import CompanyProfile from "./Pages/CompanyProfile/CompanyProfile";
+import ListOfTests from "./Pages/ListOfTests/ListOfTests";
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/company_profile/:id" element={<CompanyProfile/>}/>
             <Route path="/companies/create" element={<CompanyRegistration />}/>
             <Route path="/companies" element={<CompaniesList />}/>
+            <Route path="/my_tests" element={<ListOfTests />}/>
         </Routes>
     );
 }

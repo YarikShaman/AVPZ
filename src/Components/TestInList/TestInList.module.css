@@ -1,0 +1,125 @@
+.mainDiv{
+    width: 1376px;
+    height: 400px;
+    /*background: #50F2AE;*/
+    border-radius: 28px;
+    border: rgba(73, 66, 228, 1) 2px solid;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.test{
+    margin: 50px 50px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.testTitle{
+    height: 55px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.testTitleName{
+    color: #4942E4;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.testTitleButtons{
+    display: flex;
+    flex-direction: row;
+}
+
+.testTitleButtonsEdit{
+    background: rgba(73, 66, 228, 1);
+    height: 54px;
+    width: 173px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #FFFEFE;
+    margin-right: 20px;
+}
+
+.testTitleButtonsEdit:hover{
+    background: #1E1E1E;
+}
+
+.testTitleButtonsDelete{
+    background: #1E1E1E;
+    height: 54px;
+    width: 173px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #FFFEFE;
+}
+
+.testTitleButtonsDelete:hover{
+    background: #858484;
+}
+
+.testTime{
+    color: #1E1E1E;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    height: 88px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: start;
+}
+
+.testDescription{
+    color: #717070;
+    font-family: Open Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    height: 66px;
+}
+
+.testTags{
+    display: flex;
+    flex-direction: row;
+}
+
+.tag{
+    background: rgba(80, 242, 174, 1);
+    height: 30px;
+    min-width: 100px;
+    padding: 10px 20px;
+    border-radius: 14px;
+    color: rgba(151, 71, 255, 1);
+    border:rgba(228, 226, 254, 1) 1px solid;
+    margin-right: 20px;
+    font-family: Open Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    text-align: center;
+}
