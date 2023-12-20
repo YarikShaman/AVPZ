@@ -31,5 +31,5 @@ jobs:
         script: |
           cd /home/ubuntu/front
           docker compose down
-          docker image prune -f
+          docker image rm front-front:latest
           docker compose up -d --build
