@@ -29,6 +29,9 @@ export default function Employee(props: Props) {
             <div className={styles.mainDivPhone}>
                 {props.phone_number}
             </div>
+            {!props.edit_visibility || props.role=="owner" &&
+            <div className={styles.mainDivSvg}>
+            </div>}
             {props.edit_visibility && props.role!="owner" &&
                 <a href={`${id}/members/${props.id}/edit`}>
                     <svg className={styles.mainDivSvg} viewBox="0 0 118 22" fill="none"
