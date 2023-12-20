@@ -19,6 +19,7 @@ import EmployeeRegistration from './Pages/EmloyeeRegistration/EmployeeRegistrati
 import EmployeeEdit from './Pages/EmployeeEdit/EmployeeEdit';
 import TestPassing from './Pages/TestPassing/TestPassing';
 import ListOfTests from "./Pages/ListOfTests/ListOfTests";
+import TestResult from "./Pages/TestResult/TestResult";
 
 function App() {
     return (
@@ -42,6 +43,7 @@ function App() {
             <Route path="/companies/" element={<CompaniesList />}/>
             <Route path="/tests/create/" element={<TestCreation />}/>
             <Route path="/tests/:id/" element={<TestPassing />}/>
+            <Route path="/tests/:id/result" element={<TestResult />}/>
         </Routes>
     );
 }

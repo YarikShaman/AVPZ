@@ -1,0 +1,82 @@
+.mainBackground{
+    width: fit-content;
+    min-width: 100%;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.mainDiv{
+    /*background: #50F2AE;*/
+    display: flex;
+    /*align-items: center;*/
+    justify-content: start;
+    flex-direction: column;
+    width: 870px;
+}
+
+.titleDiv{
+    color: #1E1E1E;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 40px;
+}
+
+.resultDiv{
+    background: rgba(73, 66, 228, 1);
+    width: 730px;
+    height: 200px;
+    border-radius: 28px;
+    border: rgba(152, 149, 209, 1) 2px solid;
+    display: flex;
+    flex-direction: column;
+    margin-top: 70px;
+    padding: 50px 60px;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.resultDivResult{
+    height: 23px;
+    color: #FFF;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 50px;
+}
+
+.resultDivDetais{
+    height: 19px;
+    color: #E4E2FE;
+
+    text-align: center;
+    leading-trim: both;
+
+    text-edge: cap;
+    font-family: Open Sans;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.noticeDiv{
+    width: 730px;
+    height: 33px;
+    color: rgba(76, 14, 151, 1);
+    font-family: Open Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 30px;
+}
