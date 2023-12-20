@@ -30,5 +30,7 @@ jobs:
         key: "${{ secrets.AMAZON_SSH }}"
         script: |
           cd /home/ubuntu/front
-          docker compose up -d
+          docker compose down
+          docker compose up -d --build
+          docker image prune -f
 
