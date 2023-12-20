@@ -16,6 +16,7 @@ interface Option {
 interface ConvertedRequest {
     title: string;
     description: string;
+    max_attempts_count:string,
     completion_time: number;
     start_date: string;
     start_time: string;
@@ -44,6 +45,7 @@ interface Question {
 interface Request {
     title: string,
     description: string,
+    max_attempts_count:string,
     completion_time: number,
     start_date: string,
     start_time: string,
@@ -59,6 +61,7 @@ function TestCreation() {
     const [testName, setTestName] = useState("");
     const [testDescription, setTestDescription] = useState("");
     const [testComplTime, setTestComplTime] = useState("");
+    const [testAttempts, setTestAttempts] = useState("");
     const [testStartTime, setTestStartTime] = useState("");
     const [testStartDate, setTestStartDate] = useState("");
     const [testEndTime, setTestEndTime] = useState("");
@@ -109,6 +112,7 @@ function TestCreation() {
         let request: Request = {
             title: testName,
             description: testDescription,
+            max_attempts_count:testAttempts,
             completion_time: complTime,
             start_date: testStartDate,
             start_time: testStartTime,
@@ -119,6 +123,7 @@ function TestCreation() {
             questions: data
         }
         const newRequest = convertRequest(request);
+        console.log(newRequest.title)
         axios.post(
             "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/quizzes/create",
             newRequest,
@@ -171,10 +176,10 @@ function TestCreation() {
                 is_correct: a.is_correct,
             })),
         }));
-
         const convertedRequest: ConvertedRequest = {
             title: request.title,
             description: request.description,
+            max_attempts_count: request.max_attempts_count,
             completion_time: request.completion_time,
             start_date: convertDateFormat(request.start_date),
             start_time: request.start_time,
@@ -258,6 +263,10 @@ function TestCreation() {
                                 <input value={testComplTime} onChange={(e) => {
                                     setTestComplTime(e.target.value)
                                 }} className={"inputTime"} type={"time"}></input>
+                                <label style={{marginLeft:130}} className={"timeLimitLabel"}>Attempts</label>
+                                <input value={testAttempts} onChange={(e) => {
+                                    setTestAttempts(e.target.value)
+                                }} className={"inputTime"}  type={"number"}></input>
                             </div>
                             <div className={"dateLimitDiv"}>
                                 <label>Start Date</label>

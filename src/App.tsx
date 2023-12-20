@@ -34,7 +34,7 @@ function App() {
             <Route path="/company_profile/:id" element={<CompanyProfile/>}/>
             <Route path="/companies/create" element={<CompanyRegistration />}/>
             <Route path="/companies" element={<CompaniesList />}/>
-            <Route path="/my_tests" element={<ListOfTests />}/>
+            <Route path="/tests" element={<ListOfTests />}/>
             <Route path="/companies/:id/" element={<CompanyProfile/>}/>
             <Route path="/companies/:id/add_member/" element={<EmployeeRegistration/>}/>
             <Route path="/companies/:id/members/:id2/edit" element={<EmployeeEdit/>}/>

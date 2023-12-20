@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import TestInList from "../../Components/TestInList/TestInList";
 import {ListOfTest} from '../../Components/Interface/ListOfTestsData'
 import axios from "axios";
+import {SaveJWT} from "../../Utilities/SaveJWT";
 
 interface userData {
     email: string
@@ -33,10 +34,10 @@ export default function ListOfTests(){
     const nav = useNavigate()
     const [listData, setListData] = useState<ListOfTest>()
     // const [userData, setUserData] = useState<userData>()
-    const [visibility, setVisibility] = useState('hidden')
+    const [visibility, setVisibility] = useState(false)
 
     useEffect(() => {
-        GetData(sessionStorage.getItem("jwt"));
+        GetData(SaveJWT());
     }, [])
 
     function GetData(jwt: string | null) {
@@ -46,9 +47,9 @@ export default function ListOfTests(){
             resp => {
                 console.log(resp)
                 if (resp.data.companies[0]?.role=="owner" && resp.data.companies[0]?.role=="admin" && resp.data.companies[0]?.role=="test_maker") {
-                    setVisibility("visible")
+                    setVisibility(true)
                 }
-                GetListData(sessionStorage.getItem("jwt"), resp.data.companies[0]?.id);
+                GetListData(jwt, resp.data.companies[0]?.id);
             }
         ).catch(err => {
             switch (err) {
@@ -81,7 +82,7 @@ export default function ListOfTests(){
         <div className={styles.mainBackground}>
             <div className={styles.mainDiv}>
                 <div className={styles.titleDiv}>List of Tests</div>
-                <div className={styles.createDiv} onClick={()=>{nav("/")}}>
+                <div className={styles.createDiv} onClick={()=>{nav("create")}}>
                     <div className={styles.createDivText}>
                         + Create Test
                     </div>

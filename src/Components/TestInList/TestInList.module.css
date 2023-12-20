@@ -101,6 +101,7 @@
     font-weight: 400;
     line-height: normal;
     height: 66px;
+    overflow-wrap: break-word;
 }
 
 .testTags{

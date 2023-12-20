@@ -6,10 +6,32 @@ import "./TestPassing.css";
 import {SaveJWT} from "../../Utilities/SaveJWT";
 import QuestionInTestPassing from "../../Components/QuestionInTestPassing/QuestionInTestPassing";
 
+interface Answer {
+    id: number;
+    title: string;
+    question_id: number;
+}
+
+interface Question {
+    title: string;
+    type: string;
+    id: string;
+    quiz_id: string;
+    answers: Answer[];
+}
+
+interface QuizObject {
+    id: string;
+    completion_time: number;
+    questions: Question[];
+    attempt_id: string;
+}
+
 function TestPassing() {
     let info = useParams();
     const [time, setTime] = useState(0);
     const [test, setTest] = useState<Test>()
+    const [testStart, setTestStart] = useState<QuizObject>()
     const [isStarted, setIsStarted] = useState<boolean>(false)
     const nav = useNavigate();
     const loadTest = () => {
@@ -23,6 +45,14 @@ function TestPassing() {
         console.log(test)
     }
     const handleStartTest = () =>{
+        axios({
+            method: 'post',
+            url: "http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/quizzes/" + info.id+"/attempt/start/",
+            headers:{Authorization: "Bearer " + SaveJWT()}
+        }).then((res)=>{
+               setTestStart(res.data)
+            }
+        ).catch(err=>{})
         setIsStarted(true);
         startTimer(test?.completion_time)
     }
@@ -36,7 +66,7 @@ function TestPassing() {
     };
     useEffect(() => {
         let interval: string | number | NodeJS.Timeout | undefined;
-
+        console.log(test)
         if (isStarted) {
             interval = setInterval(() => {
                 setTime((prevTime) => {
@@ -76,11 +106,11 @@ function TestPassing() {
             <div>
                 <div className={"testTitle"}>{test?.title}</div>
                 <div>
-                    {test?.questions.map((question,index)=>(
-                            <QuestionInTestPassing question={question} index={index+1} count={test.questions.length}/>
+                    {testStart?.questions.map((question,index)=>(
+                            <QuestionInTestPassing question={question} index={index+1} count={testStart.questions.length} attempt_id={testStart?.attempt_id}/>
                     ))}
                 </div>
-                <button style={{margin:10}} className={"btnStartTest"}>End test</button>
+                <button onClick={()=>nav("/")} style={{margin:10}} className={"btnStartTest"}>End test</button>
             </div>}
             <div className={"timerDiv"}>
                 <div >

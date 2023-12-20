@@ -1,21 +1,23 @@
 import React from "react";
 import styles from "./TestInList.module.css"
 import {Test} from "../Interface/ListOfTestsData";
+import {useNavigate} from "react-router-dom";
 
 interface Params{
     test:Test;
-    visibility:string
+    visibility:boolean
 }
 
 export default function TestInList( params:Params){
-
+    const nav = useNavigate();
     const test = params.test
 
     return(
         <div className={styles.mainDiv}>
             <div className={styles.test}>
                 <div className={styles.testTitle}>
-                    <div className={styles.testTitleName}>{test.title}</div>
+                    <div onClick={()=>{nav("/tests/"+params.test.id)}} className={styles.testTitleName}>{test.title}</div>
+                    {params.visibility&&
                     <div className={styles.testTitleButtons}>
                         <div className={styles.testTitleButtonsEdit}>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +32,7 @@ export default function TestInList( params:Params){
                             </svg>
                             Delete
                         </div>
-                    </div>
+                    </div>}
                 </div>
                 <div className={styles.testTime}>
                     <div>Start Date: {test.start_date}, {test.start_time}</div>
@@ -38,7 +40,6 @@ export default function TestInList( params:Params){
                     <div>Time Limit: 30 min</div>
                 </div>
                 <div className={styles.testDescription}>
-                    {test.title}{test.title}{test.title}{test.title}{test.title}
                     {test.title}{test.title}{test.title}{test.title}{test.title}
                     {test.title}{test.title}{test.title}{test.title}{test.title}
                 </div>
