@@ -25,14 +25,12 @@ interface Info {
 
 
 function QuestionInTestPassing(info: Info) {
-    const [answers,setAnswers]=useState<string[]>([])
-    const [answer,setAnswer]=useState<string>("")
+    const [answers,setAnswers]=useState<number[]>([])
+    const [answer,setAnswer]=useState<number>()
     const RadioOption = ({answer}: { answer: Answer }) => {
 
         const handleRadio =(e:string)=>{
-            const ans = [e]
-            setAnswers(ans)
-            console.log(answers)
+            setAnswer(Number(e))
         }
         return(
             <div className={"optionInPassingDiv"}>
@@ -44,7 +42,16 @@ function QuestionInTestPassing(info: Info) {
 
     const CheckboxOption = ({answer}: { answer: Answer }) => {
         const handleCheckbox = (e:string) => {
-            setAnswer(e)
+            const newNumber = Number(e);
+            const index = answers.indexOf(newNumber);
+
+            if (index === -1) {
+               setAnswers([...answers, newNumber]);
+            } else {
+                const updatedArray = [...answers];
+                updatedArray.splice(index, 1);
+                setAnswers(updatedArray);
+            }
         };
         return(
             <div className={"optionInPassingDiv"}>
@@ -59,9 +66,9 @@ function QuestionInTestPassing(info: Info) {
             req = {answers:[answer]}
         }
         else{
-            req = answers;
+            req = {answers:answers};
         }
-        axios.post(`http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/attempts/${info.attempt_id}/answer-question/${info.question.quiz_id}/`,
+        axios.post(`http://ec2-3-68-94-147.eu-central-1.compute.amazonaws.com:8000/attempts/${info.attempt_id}/answer-question/${info.question.id}/`,
             req,
             {headers: {Authorization: "Bearer " + SaveJWT()}})
     }
@@ -86,7 +93,7 @@ function QuestionInTestPassing(info: Info) {
                     </div>}
                 {info.question.type == "open_answer" &&
                     <div>
-                        <input value={answer} onChange={(e)=>setAnswer(e.target.value)}></input>
+                        <input value={answer} onChange={(e)=>setAnswer(Number(e.target.value))}></input>
                     </div>}
                 <button className={"btnSaveAnswer"} onClick={answerRequest}>Answer</button>
             </div>
