@@ -73,6 +73,7 @@ function TestPassing() {
                     if (prevTime <= 0) {
                         setIsStarted(false);
                         clearInterval(interval);
+                        nav(`/tests/${testStart?.attempt_id}/result`)
                         return 0;
                     }
                     return prevTime - 1;
@@ -110,7 +111,7 @@ function TestPassing() {
                             <QuestionInTestPassing question={question} index={index+1} count={testStart.questions.length} attempt_id={testStart?.attempt_id}/>
                     ))}
                 </div>
-                <button onClick={()=>nav("/")} style={{margin:10}} className={"btnStartTest"}>End test</button>
+                <button onClick={()=>nav(`/tests/${testStart?.attempt_id}/result`)} style={{margin:10}} className={"btnStartTest"}>End test</button>
             </div>}
             <div className={"timerDiv"}>
                 <div >
