@@ -1,23 +1,19 @@
-import React, {useCallback, useEffect, useState} from "react";
-import axios from "axios";
-import {useLocation, useNavigate} from "react-router-dom";
-import {SaveJWT} from "../../Utilities/SaveJWT";
+import React, {useState} from "react";
 import "./QuestionInTestCreate.css"
 
 interface OptionType {
     type: string;
     index: number;
-    isLast:boolean;
+    isLast: boolean;
     onRemove: (arg0: number) => void;
     onDataChange: (data: any) => void;
 }
 
 function OptionInTestCreate(info: OptionType) {
-    let nav = useNavigate();
-    const [value,setValue] = useState<string>("");
-    const [isAnswer,setIsAnswer] = useState<boolean>(false);
+    const [value, setValue] = useState<string>("");
+    const [isAnswer, setIsAnswer] = useState<boolean>(false);
     const handleInputChange = (value: string, isAnswer: boolean) => {
-        if(info.type=="open_answer"){
+        if (info.type == "open_answer") {
             setIsAnswer(true)
         }
         const newData = {
@@ -39,15 +35,23 @@ function OptionInTestCreate(info: OptionType) {
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="1" y="1" width="18" height="18" rx="2" stroke="#4C0E97" strokeWidth="1.5"/>
                 </svg>}
-            <input onChange={(e)=>{setValue(e.target.value); handleInputChange(e.target.value,isAnswer)}} placeholder={"Answer"} className={"questionOptionInput nameInputs"}/>
-            {(info.type != "open_answer") &&<>
-            <input onChange={(e)=>{setIsAnswer(!isAnswer);handleInputChange(value,!isAnswer) }} className={"questionCheckbox"} type={"checkbox"}/>
-            <label className={"correctLabel"}>Mark as correct</label></>}
+            <input onChange={(e) => {
+                setValue(e.target.value);
+                handleInputChange(e.target.value, isAnswer)
+            }} placeholder={"Answer"} className={"questionOptionInput nameInputs"}/>
+            {(info.type != "open_answer") && <>
+                <input onChange={(e) => {
+                    setIsAnswer(!isAnswer);
+                    handleInputChange(value, !isAnswer)
+                }} className={"questionCheckbox"} type={"checkbox"}/>
+                <label className={"correctLabel"}>Mark as correct</label></>}
             {info.isLast && <div className={"deleteOption"}>
-            <svg  onClick={()=>{info.onRemove(info.index)}} width="25" height="25" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 11L11 1L1 11ZM1 1L11 11L1 1Z" fill="#717070"/>
-            <path d="M1 11L11 1M1 1L11 11" stroke="#1E1E1E" strokeLinecap="round"/>
-            </svg>
+                <svg onClick={() => {
+                    info.onRemove(info.index)
+                }} width="25" height="25" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 11L11 1L1 11ZM1 1L11 11L1 1Z" fill="#717070"/>
+                    <path d="M1 11L11 1M1 1L11 11" stroke="#1E1E1E" strokeLinecap="round"/>
+                </svg>
             </div>}
         </div>
     );
